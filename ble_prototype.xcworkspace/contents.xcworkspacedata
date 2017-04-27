@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:BLE_Lock_Master/BLE_Lock_Master.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "container:BLE_Lock_Peripheral.xcodeproj">
    </FileRef>
 </Workspace>
