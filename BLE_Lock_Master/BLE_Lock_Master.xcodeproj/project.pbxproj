@@ -15,6 +15,8 @@
 		63814B401EB3830B001A2B65 /* BLE_shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B3E1EB3830B001A2B65 /* BLE_shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63814B461EB38A54001A2B65 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B451EB38A54001A2B65 /* SnapKit.framework */; };
 		63814B471EB38A54001A2B65 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B451EB38A54001A2B65 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63814B491EB399F3001A2B65 /* QuantiLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B481EB399F3001A2B65 /* QuantiLogger.framework */; };
+		63814B4A1EB399F3001A2B65 /* QuantiLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B481EB399F3001A2B65 /* QuantiLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +28,7 @@
 			files = (
 				63814B401EB3830B001A2B65 /* BLE_shared.framework in Embed Frameworks */,
 				63814B471EB38A54001A2B65 /* SnapKit.framework in Embed Frameworks */,
+				63814B4A1EB399F3001A2B65 /* QuantiLogger.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,6 +44,7 @@
 		63814B151EB21596001A2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63814B3E1EB3830B001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63814B451EB38A54001A2B65 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../SnapKit.framework; sourceTree = "<group>"; };
+		63814B481EB399F3001A2B65 /* QuantiLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuantiLogger.framework; path = ../QuantiLogger.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,7 @@
 			files = (
 				63814B3F1EB3830B001A2B65 /* BLE_shared.framework in Frameworks */,
 				63814B461EB38A54001A2B65 /* SnapKit.framework in Frameworks */,
+				63814B491EB399F3001A2B65 /* QuantiLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +109,7 @@
 		63814B3D1EB382CA001A2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63814B481EB399F3001A2B65 /* QuantiLogger.framework */,
 				63814B451EB38A54001A2B65 /* SnapKit.framework */,
 				63814B3E1EB3830B001A2B65 /* BLE_shared.framework */,
 			);
