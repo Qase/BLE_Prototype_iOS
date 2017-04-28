@@ -28,6 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         bleManager = MyPeripheralManager()
         bleManager.startManager()
         
+        // Draw controller
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let _window = window {
+            _window.rootViewController = ViewController()
+            
+            _window.makeKeyAndVisible()
+        }
+        
         return true
     }
 

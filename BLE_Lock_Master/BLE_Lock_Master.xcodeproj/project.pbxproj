@@ -9,18 +9,14 @@
 /* Begin PBXBuildFile section */
 		63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B091EB21596001A2B65 /* AppDelegate.swift */; };
 		63814B0C1EB21596001A2B65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B0B1EB21596001A2B65 /* ViewController.swift */; };
-		63814B0F1EB21596001A2B65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63814B0D1EB21596001A2B65 /* Main.storyboard */; };
 		63814B111EB21596001A2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63814B101EB21596001A2B65 /* Assets.xcassets */; };
-		63814B141EB21596001A2B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63814B121EB21596001A2B65 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		63814B061EB21596001A2B65 /* BLE_Lock_Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE_Lock_Master.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63814B091EB21596001A2B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63814B0B1EB21596001A2B65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		63814B0E1EB21596001A2B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63814B101EB21596001A2B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		63814B131EB21596001A2B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63814B151EB21596001A2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -35,6 +31,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B2BDDA51EB369FD00DBB75D /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				63814B101EB21596001A2B65 /* Assets.xcassets */,
+				63814B151EB21596001A2B65 /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		63814AFD1EB21596001A2B65 = {
 			isa = PBXGroup;
 			children = (
@@ -56,10 +61,7 @@
 			children = (
 				63814B091EB21596001A2B65 /* AppDelegate.swift */,
 				63814B0B1EB21596001A2B65 /* ViewController.swift */,
-				63814B0D1EB21596001A2B65 /* Main.storyboard */,
-				63814B101EB21596001A2B65 /* Assets.xcassets */,
-				63814B121EB21596001A2B65 /* LaunchScreen.storyboard */,
-				63814B151EB21596001A2B65 /* Info.plist */,
+				5B2BDDA51EB369FD00DBB75D /* SupportingFiles */,
 			);
 			path = BLE_Lock_Master;
 			sourceTree = "<group>";
@@ -124,9 +126,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63814B141EB21596001A2B65 /* LaunchScreen.storyboard in Resources */,
 				63814B111EB21596001A2B65 /* Assets.xcassets in Resources */,
-				63814B0F1EB21596001A2B65 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,25 +143,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		63814B0D1EB21596001A2B65 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				63814B0E1EB21596001A2B65 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		63814B121EB21596001A2B65 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				63814B131EB21596001A2B65 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		63814B161EB21596001A2B65 /* Debug */ = {
@@ -304,6 +285,7 @@
 				63814B1A1EB21596001A2B65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
