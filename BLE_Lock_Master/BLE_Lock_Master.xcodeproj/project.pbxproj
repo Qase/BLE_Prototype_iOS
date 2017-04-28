@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B2BDDA91EB37AFD00DBB75D /* MasterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BDDA81EB37AFD00DBB75D /* MasterManager.swift */; };
 		63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B091EB21596001A2B65 /* AppDelegate.swift */; };
 		63814B0C1EB21596001A2B65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B0B1EB21596001A2B65 /* ViewController.swift */; };
 		63814B111EB21596001A2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63814B101EB21596001A2B65 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B2BDDA81EB37AFD00DBB75D /* MasterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterManager.swift; sourceTree = "<group>"; };
 		63814B061EB21596001A2B65 /* BLE_Lock_Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE_Lock_Master.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63814B091EB21596001A2B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63814B0B1EB21596001A2B65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		5B2BDDA71EB37A4C00DBB75D /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				5B2BDDA81EB37AFD00DBB75D /* MasterManager.swift */,
+			);
+			name = Bluetooth;
+			sourceTree = "<group>";
+		};
 		63814AFD1EB21596001A2B65 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,7 @@
 		63814B081EB21596001A2B65 /* BLE_Lock_Master */ = {
 			isa = PBXGroup;
 			children = (
+				5B2BDDA71EB37A4C00DBB75D /* Bluetooth */,
 				63814B091EB21596001A2B65 /* AppDelegate.swift */,
 				63814B0B1EB21596001A2B65 /* ViewController.swift */,
 				5B2BDDA51EB369FD00DBB75D /* SupportingFiles */,
@@ -167,6 +178,7 @@
 			files = (
 				63814B0C1EB21596001A2B65 /* ViewController.swift in Sources */,
 				63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */,
+				5B2BDDA91EB37AFD00DBB75D /* MasterManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
