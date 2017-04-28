@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BLE_shared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             _window.makeKeyAndVisible()
         }
+        
+        print(ConstantsShared.MainServiceUUIDString)
+        
         return true
     }
 

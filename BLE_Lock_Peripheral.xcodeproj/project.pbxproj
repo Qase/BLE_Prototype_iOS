@@ -11,7 +11,23 @@
 		6341C7E61EA8E93C000BBE86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341C7E51EA8E93C000BBE86 /* ViewController.swift */; };
 		6341C7EB1EA8E93C000BBE86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6341C7EA1EA8E93C000BBE86 /* Assets.xcassets */; };
 		6341C7F71EA8F9B9000BBE86 /* MyPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341C7F61EA8F9B9000BBE86 /* MyPeripheralManager.swift */; };
+		63814B391EB38195001A2B65 /* BLE_shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B381EB38195001A2B65 /* BLE_shared.framework */; };
+		63814B3A1EB38195001A2B65 /* BLE_shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B381EB38195001A2B65 /* BLE_shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		63814B3B1EB38195001A2B65 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				63814B3A1EB38195001A2B65 /* BLE_shared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6341C7E01EA8E93C000BBE86 /* BLE_Lock_Peripheral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE_Lock_Peripheral.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -20,6 +36,7 @@
 		6341C7EA1EA8E93C000BBE86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6341C7EF1EA8E93C000BBE86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6341C7F61EA8F9B9000BBE86 /* MyPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPeripheralManager.swift; sourceTree = "<group>"; };
+		63814B381EB38195001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63814B391EB38195001A2B65 /* BLE_shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,10 +79,11 @@
 		6341C7E21EA8E93C000BBE86 /* BLE_Lock_Peripheral */ = {
 			isa = PBXGroup;
 			children = (
-				5B2BDDA61EB378BD00DBB75D /* SupportingFiles */,
 				6341C7F51EA8F975000BBE86 /* Bluetooth */,
 				6341C7E31EA8E93C000BBE86 /* AppDelegate.swift */,
 				6341C7E51EA8E93C000BBE86 /* ViewController.swift */,
+				5B2BDDA61EB378BD00DBB75D /* SupportingFiles */,
+				63814B3C1EB3819F001A2B65 /* Frameworks */,
 			);
 			path = BLE_Lock_Peripheral;
 			sourceTree = "<group>";
@@ -77,6 +96,14 @@
 			name = Bluetooth;
 			sourceTree = "<group>";
 		};
+		63814B3C1EB3819F001A2B65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63814B381EB38195001A2B65 /* BLE_shared.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -87,6 +114,7 @@
 				6341C7DC1EA8E93C000BBE86 /* Sources */,
 				6341C7DD1EA8E93C000BBE86 /* Frameworks */,
 				6341C7DE1EA8E93C000BBE86 /* Resources */,
+				63814B3B1EB38195001A2B65 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

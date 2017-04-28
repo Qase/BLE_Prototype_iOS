@@ -7,173 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B091EB21596001A2B65 /* AppDelegate.swift */; };
-		63814B0C1EB21596001A2B65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B0B1EB21596001A2B65 /* ViewController.swift */; };
-		63814B111EB21596001A2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63814B101EB21596001A2B65 /* Assets.xcassets */; };
-		63814B3F1EB3830B001A2B65 /* BLE_shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B3E1EB3830B001A2B65 /* BLE_shared.framework */; };
-		63814B401EB3830B001A2B65 /* BLE_shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B3E1EB3830B001A2B65 /* BLE_shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63814B301EB380E6001A2B65 /* BLE_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 63814B2E1EB380E6001A2B65 /* BLE_shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63814B371EB38117001A2B65 /* ConstantsShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B361EB38117001A2B65 /* ConstantsShared.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		63814B411EB3830B001A2B65 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				63814B401EB3830B001A2B65 /* BLE_shared.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		63814B061EB21596001A2B65 /* BLE_Lock_Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE_Lock_Master.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		63814B091EB21596001A2B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63814B0B1EB21596001A2B65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		63814B101EB21596001A2B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		63814B151EB21596001A2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63814B3E1EB3830B001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63814B2B1EB380E6001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63814B2E1EB380E6001A2B65 /* BLE_shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE_shared.h; sourceTree = "<group>"; };
+		63814B2F1EB380E6001A2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63814B361EB38117001A2B65 /* ConstantsShared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantsShared.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		63814B031EB21596001A2B65 /* Frameworks */ = {
+		63814B271EB380E6001A2B65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63814B3F1EB3830B001A2B65 /* BLE_shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B2BDDA51EB369FD00DBB75D /* SupportingFiles */ = {
+		63814B211EB380E6001A2B65 = {
 			isa = PBXGroup;
 			children = (
-				63814B101EB21596001A2B65 /* Assets.xcassets */,
-				63814B151EB21596001A2B65 /* Info.plist */,
-			);
-			name = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		63814AFD1EB21596001A2B65 = {
-			isa = PBXGroup;
-			children = (
-				63814B081EB21596001A2B65 /* BLE_Lock_Master */,
-				63814B071EB21596001A2B65 /* Products */,
+				63814B2D1EB380E6001A2B65 /* BLE_shared */,
+				63814B2C1EB380E6001A2B65 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		63814B071EB21596001A2B65 /* Products */ = {
+		63814B2C1EB380E6001A2B65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				63814B061EB21596001A2B65 /* BLE_Lock_Master.app */,
+				63814B2B1EB380E6001A2B65 /* BLE_shared.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		63814B081EB21596001A2B65 /* BLE_Lock_Master */ = {
+		63814B2D1EB380E6001A2B65 /* BLE_shared */ = {
 			isa = PBXGroup;
 			children = (
-				63814B091EB21596001A2B65 /* AppDelegate.swift */,
-				63814B0B1EB21596001A2B65 /* ViewController.swift */,
-				5B2BDDA51EB369FD00DBB75D /* SupportingFiles */,
-				63814B3D1EB382CA001A2B65 /* Frameworks */,
+				63814B2E1EB380E6001A2B65 /* BLE_shared.h */,
+				63814B2F1EB380E6001A2B65 /* Info.plist */,
+				63814B361EB38117001A2B65 /* ConstantsShared.swift */,
 			);
-			path = BLE_Lock_Master;
-			sourceTree = "<group>";
-		};
-		63814B3D1EB382CA001A2B65 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				63814B3E1EB3830B001A2B65 /* BLE_shared.framework */,
-			);
-			name = Frameworks;
+			path = BLE_shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		63814B281EB380E6001A2B65 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63814B301EB380E6001A2B65 /* BLE_shared.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		63814B051EB21596001A2B65 /* BLE_Lock_Master */ = {
+		63814B2A1EB380E6001A2B65 /* BLE_shared */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 63814B181EB21596001A2B65 /* Build configuration list for PBXNativeTarget "BLE_Lock_Master" */;
+			buildConfigurationList = 63814B331EB380E6001A2B65 /* Build configuration list for PBXNativeTarget "BLE_shared" */;
 			buildPhases = (
-				63814B021EB21596001A2B65 /* Sources */,
-				63814B031EB21596001A2B65 /* Frameworks */,
-				63814B041EB21596001A2B65 /* Resources */,
-				63814B411EB3830B001A2B65 /* Embed Frameworks */,
+				63814B261EB380E6001A2B65 /* Sources */,
+				63814B271EB380E6001A2B65 /* Frameworks */,
+				63814B281EB380E6001A2B65 /* Headers */,
+				63814B291EB380E6001A2B65 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BLE_Lock_Master;
-			productName = BLE_Lock_Master;
-			productReference = 63814B061EB21596001A2B65 /* BLE_Lock_Master.app */;
-			productType = "com.apple.product-type.application";
+			name = BLE_shared;
+			productName = BLE_shared;
+			productReference = 63814B2B1EB380E6001A2B65 /* BLE_shared.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		63814AFE1EB21596001A2B65 /* Project object */ = {
+		63814B221EB380E6001A2B65 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "David Nemec";
 				TargetAttributes = {
-					63814B051EB21596001A2B65 = {
+					63814B2A1EB380E6001A2B65 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 2PY9RKK8A7;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 63814B011EB21596001A2B65 /* Build configuration list for PBXProject "BLE_Lock_Master" */;
+			buildConfigurationList = 63814B251EB380E6001A2B65 /* Build configuration list for PBXProject "BLE_shared" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = 63814AFD1EB21596001A2B65;
-			productRefGroup = 63814B071EB21596001A2B65 /* Products */;
+			mainGroup = 63814B211EB380E6001A2B65;
+			productRefGroup = 63814B2C1EB380E6001A2B65 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				63814B051EB21596001A2B65 /* BLE_Lock_Master */,
+				63814B2A1EB380E6001A2B65 /* BLE_shared */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		63814B041EB21596001A2B65 /* Resources */ = {
+		63814B291EB380E6001A2B65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63814B111EB21596001A2B65 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		63814B021EB21596001A2B65 /* Sources */ = {
+		63814B261EB380E6001A2B65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63814B0C1EB21596001A2B65 /* ViewController.swift in Sources */,
-				63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */,
+				63814B371EB38117001A2B65 /* ConstantsShared.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		63814B161EB21596001A2B65 /* Debug */ = {
+		63814B311EB380E6001A2B65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -197,6 +167,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -221,10 +192,12 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		63814B171EB21596001A2B65 /* Release */ = {
+		63814B321EB380E6001A2B65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -248,6 +221,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -265,31 +239,48 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		63814B191EB21596001A2B65 /* Debug */ = {
+		63814B341EB380E6001A2B65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2PY9RKK8A7;
-				INFOPLIST_FILE = BLE_Lock_Master/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-Lock-Master";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BLE_shared/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-shared";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		63814B1A1EB21596001A2B65 /* Release */ = {
+		63814B351EB380E6001A2B65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2PY9RKK8A7;
-				INFOPLIST_FILE = BLE_Lock_Master/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-Lock-Master";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = BLE_shared/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-shared";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -297,25 +288,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		63814B011EB21596001A2B65 /* Build configuration list for PBXProject "BLE_Lock_Master" */ = {
+		63814B251EB380E6001A2B65 /* Build configuration list for PBXProject "BLE_shared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				63814B161EB21596001A2B65 /* Debug */,
-				63814B171EB21596001A2B65 /* Release */,
+				63814B311EB380E6001A2B65 /* Debug */,
+				63814B321EB380E6001A2B65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		63814B181EB21596001A2B65 /* Build configuration list for PBXNativeTarget "BLE_Lock_Master" */ = {
+		63814B331EB380E6001A2B65 /* Build configuration list for PBXNativeTarget "BLE_shared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				63814B191EB21596001A2B65 /* Debug */,
-				63814B1A1EB21596001A2B65 /* Release */,
+				63814B341EB380E6001A2B65 /* Debug */,
+				63814B351EB380E6001A2B65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 63814AFE1EB21596001A2B65 /* Project object */;
+	rootObject = 63814B221EB380E6001A2B65 /* Project object */;
 }
