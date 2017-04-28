@@ -7,40 +7,48 @@
 //
 
 import Foundation
+import BLE_shared
 import CoreBluetooth
 
-class MasterManager {
+class MasterManager: NSObject {
     static let shared = MasterManager()
     
-    private init() {
+    private override init() {
+        super.init()
+        
         manager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    private var manager: CBCentralManager
-    private var peripheral: CBPeripheral?
+    func start() {
+        
+    }
+    
+    fileprivate var manager: CBCentralManager?
+    fileprivate var peripheral: CBPeripheral?
 }
 
 extension MasterManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == CBCentralManagerState.PoweredOn {
-            central.scanForPeripheralsWithServices(nil, options: nil)
+        if central.state == CBManagerState.poweredOn {
+            print("Scanning for peripherals...")
+            central.scanForPeripherals(withServices: nil, options: nil)
         } else {
             print("Bluetooth not available.")
         }
     }
     
-    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-        let device = (advertisementData as NSDictionary).objectForKey(CBAdvertisementDataLocalNameKey) as? String
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        let device = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey) as? String
         
-        print("Found device: \(device).")
+        print("Found device: \(device?.description ?? "no description").")
         
-        if device?.containsString(BEAN_NAME) == true {
-            self.manager.stopScan()
+        if device?.contains(ConstantsShared.AdvertisementNameKeyString) == true {
+            manager?.stopScan()
             
             self.peripheral = peripheral
-            self.peripheral.delegate = self
+            self.peripheral?.delegate = self
             
-            manager.connectPeripheral(peripheral, options: nil)
+            manager?.connect(peripheral, options: nil)
         }
     }
     
@@ -53,21 +61,36 @@ extension MasterManager: CBCentralManagerDelegate {
 
 extension MasterManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("Did discover \(peripheral.services?.count) services.")
+        guard self.peripheral == peripheral else {
+            return
+        }
         
-        for service in peripheral.services {
-            let thisService = service as CBService
-            
-            if service.UUID == BEAN_SERVICE_UUID {
-                peripheral.discoverCharacteristics(nil, forService: thisService)
+        print("Did discover \(peripheral.services?.count ?? 0) services.")
+    
+        if let _services = peripheral.services {
+            for service in _services {
+                let thisService = service as CBService
+                
+                if thisService.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString) || thisService.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString2) {
+                    print("Service \(thisService)")
+                
+                    peripheral.discoverCharacteristics(nil, for: thisService)
+                }
             }
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        print("Did discover \(service.characteristics?.count) characteristics.")
-        for characteristic in service.characteristics {
-            print(characteristic)
+        guard self.peripheral == peripheral else {
+            return
+        }
+        
+        print("Did discover \(service.characteristics?.count ?? 0) characteristics.")
+        
+        if let _characteristics = service.characteristics {
+            for characteristic in _characteristics {
+                print(characteristic)
+            }
         }
     }
 }
