@@ -13,6 +13,8 @@
 		63814B111EB21596001A2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63814B101EB21596001A2B65 /* Assets.xcassets */; };
 		63814B3F1EB3830B001A2B65 /* BLE_shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B3E1EB3830B001A2B65 /* BLE_shared.framework */; };
 		63814B401EB3830B001A2B65 /* BLE_shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B3E1EB3830B001A2B65 /* BLE_shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63814B461EB38A54001A2B65 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B451EB38A54001A2B65 /* SnapKit.framework */; };
+		63814B471EB38A54001A2B65 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B451EB38A54001A2B65 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,6 +25,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				63814B401EB3830B001A2B65 /* BLE_shared.framework in Embed Frameworks */,
+				63814B471EB38A54001A2B65 /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,6 +40,7 @@
 		63814B101EB21596001A2B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63814B151EB21596001A2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63814B3E1EB3830B001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63814B451EB38A54001A2B65 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63814B3F1EB3830B001A2B65 /* BLE_shared.framework in Frameworks */,
+				63814B461EB38A54001A2B65 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +104,7 @@
 		63814B3D1EB382CA001A2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63814B451EB38A54001A2B65 /* SnapKit.framework */,
 				63814B3E1EB3830B001A2B65 /* BLE_shared.framework */,
 			);
 			name = Frameworks;
@@ -285,6 +291,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2PY9RKK8A7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BLE_Lock_Master/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-Lock-Master";
@@ -298,6 +308,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2PY9RKK8A7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BLE_Lock_Master/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-Lock-Master";
