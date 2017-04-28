@@ -22,7 +22,7 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
         print("peripheralManagerDidAddService")
-        sharedPM.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [service.uuid], CBAdvertisementDataLocalNameKey: "Loli loli"])
+        sharedPM.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [service.uuid], CBAdvertisementDataLocalNameKey: ConstantsShared.AdvertisementNameKeyString])
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {

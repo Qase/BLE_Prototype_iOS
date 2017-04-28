@@ -15,4 +15,5 @@ public class ConstantsShared {
     
     public static let ServiceCharactericticUUIDString = "CF422553-EECC-41AA-BDE3-5640022E4972"
     public static let ServiceCharactericticUUIDString2 = "74FCF601-B18F-472B-9EB7-1A9414185BE7"
+    public static let AdvertisementNameKeyString = "Blue Loli"
 }
