@@ -16,13 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        MasterManager.shared.start()
-        
+
         // Draw controller
         window = UIWindow(frame: UIScreen.main.bounds)
         if let _window = window {
-            _window.rootViewController = ViewController()
+            _window.rootViewController = DevicesTableViewController()
             
             _window.makeKeyAndVisible()
         }

@@ -10,24 +10,27 @@ import Foundation
 import BLE_shared
 import CoreBluetooth
 
-class MasterManager: NSObject {
-    static let shared = MasterManager()
+protocol BluetoothMasterManagerDelegate: class {
+    func didDiscoverPeripheralWith(name deviceName: String)
+}
+
+class BluetoothMasterManager: NSObject {
+    static let shared = BluetoothMasterManager()
+    weak var delegate: BluetoothMasterManagerDelegate?
     
     private override init() {
         super.init()
-        
-        manager = CBCentralManager(delegate: self, queue: nil)
     }
     
     func start() {
-        
+        manager = CBCentralManager(delegate: self, queue: nil)
     }
     
     fileprivate var manager: CBCentralManager?
     fileprivate var peripheral: CBPeripheral?
 }
 
-extension MasterManager: CBCentralManagerDelegate {
+extension BluetoothMasterManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
             print("Scanning for peripherals...")
@@ -41,6 +44,7 @@ extension MasterManager: CBCentralManagerDelegate {
         let device = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey) as? String
         
         print("Found device: \(device?.description ?? "no description").")
+        delegate?.didDiscoverPeripheralWith(name: device?.description ?? "no description")
         
         if device?.contains(ConstantsShared.AdvertisementNameKeyString) == true {
             manager?.stopScan()
@@ -59,7 +63,7 @@ extension MasterManager: CBCentralManagerDelegate {
     }
 }
 
-extension MasterManager: CBPeripheralDelegate {
+extension BluetoothMasterManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard self.peripheral == peripheral else {
             return
