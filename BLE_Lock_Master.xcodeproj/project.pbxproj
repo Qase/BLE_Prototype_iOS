@@ -16,10 +16,30 @@
 		5B6192871EB8C4AC007547CF /* QuantiLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192841EB8C4AC007547CF /* QuantiLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B6192881EB8C4AC007547CF /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192851EB8C4AC007547CF /* SnapKit.framework */; };
 		5B6192891EB8C4AC007547CF /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192851EB8C4AC007547CF /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B6192981EB8C561007547CF /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192931EB8C561007547CF /* RxBlocking.framework */; };
+		5B6192991EB8C561007547CF /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192931EB8C561007547CF /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B61929A1EB8C561007547CF /* RxBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192941EB8C561007547CF /* RxBluetoothKit.framework */; };
+		5B61929B1EB8C561007547CF /* RxBluetoothKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192941EB8C561007547CF /* RxBluetoothKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B61929C1EB8C561007547CF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192951EB8C561007547CF /* RxCocoa.framework */; };
+		5B61929D1EB8C561007547CF /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192951EB8C561007547CF /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B61929E1EB8C561007547CF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192961EB8C561007547CF /* RxSwift.framework */; };
+		5B61929F1EB8C561007547CF /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192961EB8C561007547CF /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B6192AC1EB8C688007547CF /* BLE_Lock_MasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6192AB1EB8C688007547CF /* BLE_Lock_MasterTests.swift */; };
+		5B6192B71EB8C6D0007547CF /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192B41EB8C6BA007547CF /* RxTest.framework */; };
 		63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B091EB21596001A2B65 /* AppDelegate.swift */; };
 		63814B0C1EB21596001A2B65 /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B0B1EB21596001A2B65 /* DevicesTableViewController.swift */; };
 		63814B111EB21596001A2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63814B101EB21596001A2B65 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B6192AE1EB8C688007547CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63814AFE1EB21596001A2B65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63814B051EB21596001A2B65;
+			remoteInfo = BLE_Lock_Master;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5B6192731EB8C236007547CF /* Embed Frameworks */ = {
@@ -28,9 +48,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5B61929D1EB8C561007547CF /* RxCocoa.framework in Embed Frameworks */,
 				5B6192891EB8C4AC007547CF /* SnapKit.framework in Embed Frameworks */,
+				5B61929F1EB8C561007547CF /* RxSwift.framework in Embed Frameworks */,
 				5B6192871EB8C4AC007547CF /* QuantiLogger.framework in Embed Frameworks */,
+				5B61929B1EB8C561007547CF /* RxBluetoothKit.framework in Embed Frameworks */,
 				5B6192831EB8C495007547CF /* BLE_shared.framework in Embed Frameworks */,
+				5B6192991EB8C561007547CF /* RxBlocking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +68,14 @@
 		5B6192811EB8C495007547CF /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6192841EB8C4AC007547CF /* QuantiLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuantiLogger.framework; path = ../Carthage/Build/iOS/QuantiLogger.framework; sourceTree = "<group>"; };
 		5B6192851EB8C4AC007547CF /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		5B6192931EB8C561007547CF /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		5B6192941EB8C561007547CF /* RxBluetoothKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBluetoothKit.framework; path = ../Carthage/Build/iOS/RxBluetoothKit.framework; sourceTree = "<group>"; };
+		5B6192951EB8C561007547CF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		5B6192961EB8C561007547CF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		5B6192A91EB8C688007547CF /* BLE_Lock_MasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLE_Lock_MasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B6192AB1EB8C688007547CF /* BLE_Lock_MasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE_Lock_MasterTests.swift; sourceTree = "<group>"; };
+		5B6192AD1EB8C688007547CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B6192B41EB8C6BA007547CF /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = ../Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
 		63814B061EB21596001A2B65 /* BLE_Lock_Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE_Lock_Master.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63814B091EB21596001A2B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63814B0B1EB21596001A2B65 /* DevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -52,13 +84,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5B6192A61EB8C688007547CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B6192B71EB8C6D0007547CF /* RxTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63814B031EB21596001A2B65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B61929C1EB8C561007547CF /* RxCocoa.framework in Frameworks */,
 				5B6192881EB8C4AC007547CF /* SnapKit.framework in Frameworks */,
+				5B61929E1EB8C561007547CF /* RxSwift.framework in Frameworks */,
 				5B6192861EB8C4AC007547CF /* QuantiLogger.framework in Frameworks */,
+				5B61929A1EB8C561007547CF /* RxBluetoothKit.framework in Frameworks */,
 				5B6192821EB8C495007547CF /* BLE_shared.framework in Frameworks */,
+				5B6192981EB8C561007547CF /* RxBlocking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,10 +134,32 @@
 			name = Bluetooth;
 			sourceTree = "<group>";
 		};
+		5B6192AA1EB8C688007547CF /* BLE_Lock_MasterTests */ = {
+			isa = PBXGroup;
+			children = (
+				5B6192AB1EB8C688007547CF /* BLE_Lock_MasterTests.swift */,
+				5B6192AD1EB8C688007547CF /* Info.plist */,
+			);
+			path = BLE_Lock_MasterTests;
+			sourceTree = "<group>";
+		};
+		5B6192B81EB8CA14007547CF /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				5B6192961EB8C561007547CF /* RxSwift.framework */,
+				5B6192951EB8C561007547CF /* RxCocoa.framework */,
+				5B6192941EB8C561007547CF /* RxBluetoothKit.framework */,
+				5B6192931EB8C561007547CF /* RxBlocking.framework */,
+				5B6192B41EB8C6BA007547CF /* RxTest.framework */,
+			);
+			name = Rx;
+			sourceTree = "<group>";
+		};
 		63814AFD1EB21596001A2B65 = {
 			isa = PBXGroup;
 			children = (
 				63814B081EB21596001A2B65 /* BLE_Lock_Master */,
+				5B6192AA1EB8C688007547CF /* BLE_Lock_MasterTests */,
 				63814B071EB21596001A2B65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				63814B061EB21596001A2B65 /* BLE_Lock_Master.app */,
+				5B6192A91EB8C688007547CF /* BLE_Lock_MasterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +190,7 @@
 		63814B3D1EB382CA001A2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B6192B81EB8CA14007547CF /* Rx */,
 				5B6192841EB8C4AC007547CF /* QuantiLogger.framework */,
 				5B6192851EB8C4AC007547CF /* SnapKit.framework */,
 				5B6192811EB8C495007547CF /* BLE_shared.framework */,
@@ -133,6 +201,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5B6192A81EB8C688007547CF /* BLE_Lock_MasterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B6192B01EB8C688007547CF /* Build configuration list for PBXNativeTarget "BLE_Lock_MasterTests" */;
+			buildPhases = (
+				5B6192A51EB8C688007547CF /* Sources */,
+				5B6192A61EB8C688007547CF /* Frameworks */,
+				5B6192A71EB8C688007547CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B6192AF1EB8C688007547CF /* PBXTargetDependency */,
+			);
+			name = BLE_Lock_MasterTests;
+			productName = BLE_Lock_MasterTests;
+			productReference = 5B6192A91EB8C688007547CF /* BLE_Lock_MasterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		63814B051EB21596001A2B65 /* BLE_Lock_Master */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63814B181EB21596001A2B65 /* Build configuration list for PBXNativeTarget "BLE_Lock_Master" */;
@@ -161,6 +247,12 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "David Nemec";
 				TargetAttributes = {
+					5B6192A81EB8C688007547CF = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = TFYUQJX5JP;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 63814B051EB21596001A2B65;
+					};
 					63814B051EB21596001A2B65 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 2PY9RKK8A7;
@@ -182,11 +274,19 @@
 			projectRoot = "";
 			targets = (
 				63814B051EB21596001A2B65 /* BLE_Lock_Master */,
+				5B6192A81EB8C688007547CF /* BLE_Lock_MasterTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5B6192A71EB8C688007547CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63814B041EB21596001A2B65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +298,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5B6192A51EB8C688007547CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B6192AC1EB8C688007547CF /* BLE_Lock_MasterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63814B021EB21596001A2B65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,7 +320,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5B6192AF1EB8C688007547CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63814B051EB21596001A2B65 /* BLE_Lock_Master */;
+			targetProxy = 5B6192AE1EB8C688007547CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		5B6192B11EB8C688007547CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = TFYUQJX5JP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = BLE_Lock_MasterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ciggytime.swift.BLE-Lock-MasterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE_Lock_Master.app/BLE_Lock_Master";
+			};
+			name = Debug;
+		};
+		5B6192B21EB8C688007547CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = TFYUQJX5JP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = BLE_Lock_MasterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ciggytime.swift.BLE-Lock-MasterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BLE_Lock_Master.app/BLE_Lock_Master";
+			};
+			name = Release;
+		};
 		63814B161EB21596001A2B65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -349,6 +501,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5B6192B01EB8C688007547CF /* Build configuration list for PBXNativeTarget "BLE_Lock_MasterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B6192B11EB8C688007547CF /* Debug */,
+				5B6192B21EB8C688007547CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		63814B011EB21596001A2B65 /* Build configuration list for PBXProject "BLE_Lock_Master" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

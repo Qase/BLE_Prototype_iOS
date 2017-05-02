@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 struct PeripheralDevice {
     var name: String
@@ -30,11 +31,11 @@ class DevicesTableViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCells.devicesTableViewCell)
         
         view.addSubview(tableView)
-//        tableView.snp.makeConstraints { (make) in
-//            make.left.right.equalToSuperview()
-//            make.top.equalTo(self.topLayoutGuide.snp.bottom)
-//            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
-//        }
+        tableView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self.topLayoutGuide.snp.bottom)
+            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+        }
         
         let bluetoothMasterManager = BluetoothMasterManager.shared
         bluetoothMasterManager.delegate = self
