@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:BLE_shared/BLE_shared.xcodeproj">
+      location = "container:BLE_shared.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:BLE_Lock_Master/BLE_Lock_Master.xcodeproj">
+      location = "group:BLE_Lock_Master.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:BLE_Lock_Peripheral.xcodeproj">
+      location = "group:BLE_Lock_Peripheral.xcodeproj">
    </FileRef>
 </Workspace>

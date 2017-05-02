@@ -15,6 +15,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .yellow
+        view.snp.makeConstraints { (make) in
+            make.height.equalTo(self.view.snp.height)
+        }
     }
 
 }

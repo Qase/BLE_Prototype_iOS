@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B61928B1EB8C4C8007547CF /* BLE_shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61928A1EB8C4C8007547CF /* BLE_shared.framework */; };
+		5B61928C1EB8C4C8007547CF /* BLE_shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61928A1EB8C4C8007547CF /* BLE_shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B61928F1EB8C4DC007547CF /* QuantiLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61928D1EB8C4DC007547CF /* QuantiLogger.framework */; };
+		5B6192901EB8C4DC007547CF /* QuantiLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61928D1EB8C4DC007547CF /* QuantiLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B6192911EB8C4DC007547CF /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61928E1EB8C4DC007547CF /* SnapKit.framework */; };
+		5B6192921EB8C4DC007547CF /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61928E1EB8C4DC007547CF /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6341C7E41EA8E93C000BBE86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341C7E31EA8E93C000BBE86 /* AppDelegate.swift */; };
 		6341C7E61EA8E93C000BBE86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341C7E51EA8E93C000BBE86 /* ViewController.swift */; };
 		6341C7EB1EA8E93C000BBE86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6341C7EA1EA8E93C000BBE86 /* Assets.xcassets */; };
 		6341C7F71EA8F9B9000BBE86 /* MyPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341C7F61EA8F9B9000BBE86 /* MyPeripheralManager.swift */; };
-		63814B391EB38195001A2B65 /* BLE_shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B381EB38195001A2B65 /* BLE_shared.framework */; };
-		63814B3A1EB38195001A2B65 /* BLE_shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B381EB38195001A2B65 /* BLE_shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63814B431EB38898001A2B65 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B421EB38898001A2B65 /* SnapKit.framework */; };
-		63814B441EB38898001A2B65 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B421EB38898001A2B65 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63814B4C1EB39A3D001A2B65 /* QuantiLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B4B1EB39A3D001A2B65 /* QuantiLogger.framework */; };
-		63814B4D1EB39A3D001A2B65 /* QuantiLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63814B4B1EB39A3D001A2B65 /* QuantiLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		63814B3B1EB38195001A2B65 /* Embed Frameworks */ = {
+		5B6192801EB8C2F5007547CF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				63814B3A1EB38195001A2B65 /* BLE_shared.framework in Embed Frameworks */,
-				63814B441EB38898001A2B65 /* SnapKit.framework in Embed Frameworks */,
-				63814B4D1EB39A3D001A2B65 /* QuantiLogger.framework in Embed Frameworks */,
+				5B6192921EB8C4DC007547CF /* SnapKit.framework in Embed Frameworks */,
+				5B6192901EB8C4DC007547CF /* QuantiLogger.framework in Embed Frameworks */,
+				5B61928C1EB8C4C8007547CF /* BLE_shared.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,15 +36,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B61928A1EB8C4C8007547CF /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B61928D1EB8C4DC007547CF /* QuantiLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuantiLogger.framework; path = ../Carthage/Build/iOS/QuantiLogger.framework; sourceTree = "<group>"; };
+		5B61928E1EB8C4DC007547CF /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		6341C7E01EA8E93C000BBE86 /* BLE_Lock_Peripheral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE_Lock_Peripheral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6341C7E31EA8E93C000BBE86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6341C7E51EA8E93C000BBE86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6341C7EA1EA8E93C000BBE86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6341C7EF1EA8E93C000BBE86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6341C7F61EA8F9B9000BBE86 /* MyPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPeripheralManager.swift; sourceTree = "<group>"; };
-		63814B381EB38195001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63814B421EB38898001A2B65 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		63814B4B1EB39A3D001A2B65 /* QuantiLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuantiLogger.framework; path = ../Carthage/Build/iOS/QuantiLogger.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +52,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63814B391EB38195001A2B65 /* BLE_shared.framework in Frameworks */,
-				63814B431EB38898001A2B65 /* SnapKit.framework in Frameworks */,
-				63814B4C1EB39A3D001A2B65 /* QuantiLogger.framework in Frameworks */,
+				5B6192911EB8C4DC007547CF /* SnapKit.framework in Frameworks */,
+				5B61928F1EB8C4DC007547CF /* QuantiLogger.framework in Frameworks */,
+				5B61928B1EB8C4C8007547CF /* BLE_shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,9 +109,9 @@
 		63814B3C1EB3819F001A2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				63814B4B1EB39A3D001A2B65 /* QuantiLogger.framework */,
-				63814B421EB38898001A2B65 /* SnapKit.framework */,
-				63814B381EB38195001A2B65 /* BLE_shared.framework */,
+				5B61928D1EB8C4DC007547CF /* QuantiLogger.framework */,
+				5B61928E1EB8C4DC007547CF /* SnapKit.framework */,
+				5B61928A1EB8C4C8007547CF /* BLE_shared.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,7 +126,7 @@
 				6341C7DC1EA8E93C000BBE86 /* Sources */,
 				6341C7DD1EA8E93C000BBE86 /* Frameworks */,
 				6341C7DE1EA8E93C000BBE86 /* Resources */,
-				63814B3B1EB38195001A2B65 /* Embed Frameworks */,
+				5B6192801EB8C2F5007547CF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

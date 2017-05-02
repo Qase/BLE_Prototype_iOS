@@ -1,2 +1,4 @@
-github "SnapKit/SnapKit" "3.2.0"
 git "git@git.quanti.cz:git/quanti_logger_ios.git" "c4f4174849c0f96a17759a67cc37a19171cef2b0"
+github "Polidea/RxBluetoothKit" "3.0.7"
+github "ReactiveX/RxSwift" "3.4.1"
+github "SnapKit/SnapKit" "3.2.0"
