@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import RxTest
+@testable import BLE_Lock_Master
 
 class BLE_Lock_MasterTests: XCTestCase {
     
@@ -21,15 +23,9 @@ class BLE_Lock_MasterTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        BluetoothMasterManager.shared.start()
+        wait(for: [expectation(description: "expectation")], timeout: 1000)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
     
 }

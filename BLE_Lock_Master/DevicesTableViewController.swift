@@ -37,9 +37,9 @@ class DevicesTableViewController: UIViewController {
             make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
         }
         
-        let bluetoothMasterManager = BluetoothMasterManager.shared
-        bluetoothMasterManager.delegate = self
-        bluetoothMasterManager.start()
+//        let bluetoothMasterManager = BluetoothMasterManager.shared
+//        bluetoothMasterManager.delegate = self
+//        bluetoothMasterManager.start()
     }
 }
 
@@ -63,16 +63,16 @@ extension DevicesTableViewController: UITableViewDataSource {
     }
 }
 
-extension DevicesTableViewController: BluetoothMasterManagerDelegate {
-    func didDiscoverPeripheralWith(name deviceName: String) {
-        if var device = peripheralDevices.first(where: { $1.name == deviceName }) {
-            device.value.lastAdvertisation = Date()
-            return
-        }
-        
-        peripheralDevices[peripheralDevices.count] = PeripheralDevice(name: deviceName, lastAdvertisation: Date())
-        
-        tableView.reloadData()
-    }
-}
+//extension DevicesTableViewController: BluetoothMasterManagerDelegate {
+//    func didDiscoverPeripheralWith(name deviceName: String) {
+//        if var device = peripheralDevices.first(where: { $1.name == deviceName }) {
+//            device.value.lastAdvertisation = Date()
+//            return
+//        }
+//        
+//        peripheralDevices[peripheralDevices.count] = PeripheralDevice(name: deviceName, lastAdvertisation: Date())
+//        
+//        tableView.reloadData()
+//    }
+//}
 
