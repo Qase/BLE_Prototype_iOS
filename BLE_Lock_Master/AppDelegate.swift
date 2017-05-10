@@ -8,6 +8,7 @@
 
 import UIKit
 import BLE_shared
+import QuantiLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        
+        // Setup loging
+        let logManager = LogManager.shared
+        
+        let consoleLogger = ConsoleLogger()
+        consoleLogger.levels = [.verbose, .info, .debug, .warn, .error]
+        logManager.add(consoleLogger)
+        
+        
         // Draw controller
         window = UIWindow(frame: UIScreen.main.bounds)
         if let _window = window {
@@ -24,8 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             _window.makeKeyAndVisible()
         }
-        
-        print(ConstantsShared.MainServiceUUIDString)
         
         return true
     }

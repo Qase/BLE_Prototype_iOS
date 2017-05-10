@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import RxTest
+//import RxTest
 @testable import BLE_Lock_Master
 
 class BLE_Lock_MasterTests: XCTestCase {
@@ -23,8 +23,8 @@ class BLE_Lock_MasterTests: XCTestCase {
     }
     
     func testExample() {
-        BluetoothMasterManager.shared.start()
-        wait(for: [expectation(description: "expectation")], timeout: 1000)
+//        BluetoothMasterManager.shared.start()
+//        wait(for: [expectation(description: "expectation")], timeout: 1000)
     }
     
     
