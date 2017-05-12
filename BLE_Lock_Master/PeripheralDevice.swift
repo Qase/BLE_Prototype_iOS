@@ -8,21 +8,28 @@
 
 import Foundation
 
+enum PeripheralDeviceStatus: String {
+    case connected = "connected"
+    case disconnected = "disconnected"
+}
+
 struct PeripheralDevice {
-    var uuid: UUID
+    var identifier: UUID
     var name: String
+    var status: PeripheralDeviceStatus
     var numOfServices: Int
     var lastAdvertisation: Date
     
-    init(uuid: UUID, name: String, numOfServices: Int = 0, lastAdvertisation: Date) {
-        self.uuid = uuid
+    init(identifier: UUID, name: String, status: PeripheralDeviceStatus = .disconnected, numOfServices: Int = 0, lastAdvertisation: Date) {
+        self.identifier = identifier
         self.name = name
+        self.status = status
         self.numOfServices = numOfServices
         self.lastAdvertisation = lastAdvertisation
     }
     
     func isAlive() -> Bool {
-        let nowMinus5Mins = Calendar.current.date(byAdding: .second, value: -5, to: Date())!
-        return nowMinus5Mins < lastAdvertisation
+        let nowMinus5Mins = Calendar.current.date(byAdding: .minute, value: -2, to: Date())!
+        return nowMinus5Mins < lastAdvertisation || status == .connected
     }
 }

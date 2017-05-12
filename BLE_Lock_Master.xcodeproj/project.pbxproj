@@ -11,7 +11,6 @@
 		5B0DE5521EB887E100163E3B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DE5511EB887E100163E3B /* Constants.swift */; };
 		5B2BDDA91EB37AFD00DBB75D /* BluetoothMasterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BDDA81EB37AFD00DBB75D /* BluetoothMasterManager.swift */; };
 		5B4E57DD1EC3079700A04618 /* PeripheralDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E57DC1EC3079700A04618 /* PeripheralDevice.swift */; };
-		5B4E57DF1EC307A400A04618 /* PeripheralDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E57DE1EC307A400A04618 /* PeripheralDevices.swift */; };
 		5B6192821EB8C495007547CF /* BLE_shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192811EB8C495007547CF /* BLE_shared.framework */; };
 		5B6192831EB8C495007547CF /* BLE_shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192811EB8C495007547CF /* BLE_shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B6192861EB8C4AC007547CF /* QuantiLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192841EB8C4AC007547CF /* QuantiLogger.framework */; };
@@ -69,7 +68,6 @@
 		5B0DE5511EB887E100163E3B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5B2BDDA81EB37AFD00DBB75D /* BluetoothMasterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMasterManager.swift; sourceTree = "<group>"; };
 		5B4E57DC1EC3079700A04618 /* PeripheralDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralDevice.swift; sourceTree = "<group>"; };
-		5B4E57DE1EC307A400A04618 /* PeripheralDevices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralDevices.swift; sourceTree = "<group>"; };
 		5B6192811EB8C495007547CF /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6192841EB8C4AC007547CF /* QuantiLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuantiLogger.framework; path = ../Carthage/Build/iOS/QuantiLogger.framework; sourceTree = "<group>"; };
 		5B6192851EB8C4AC007547CF /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 			children = (
 				5B2BDDA81EB37AFD00DBB75D /* BluetoothMasterManager.swift */,
 				5B4E57DC1EC3079700A04618 /* PeripheralDevice.swift */,
-				5B4E57DE1EC307A400A04618 /* PeripheralDevices.swift */,
 			);
 			name = Bluetooth;
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B0DE5521EB887E100163E3B /* Constants.swift in Sources */,
-				5B4E57DF1EC307A400A04618 /* PeripheralDevices.swift in Sources */,
 				5BCA76AD1EC1E52800BB3A3C /* DateExtension.swift in Sources */,
 				5B4E57DD1EC3079700A04618 /* PeripheralDevice.swift in Sources */,
 				63814B0C1EB21596001A2B65 /* DevicesTableViewController.swift in Sources */,

@@ -18,22 +18,41 @@ protocol BluetoothMasterManagerDelegate: class {
     func didDiscover(_ peripheral: CBPeripheral, with advertisementData: [String : Any])
     func didDiscoverServices(of peripheral: CBPeripheral)
     func didUpdate(_ peripheral: CBPeripheral)
+    func didDisconnect(_ peripheral: CBPeripheral)
+}
+
+protocol BluetoothMasterManagerInterface: class {
+    func start()
+    func assign(delegate: BluetoothMasterManagerDelegate)
+    func connectToPeripheral(withIdentifier identifier: UUID)
 }
 
 class BluetoothMasterManager: NSObject {
-    static let shared = BluetoothMasterManager()
 
     fileprivate var manager: CBCentralManager?
-    fileprivate var peripherals = [CBPeripheral]()
+    fileprivate var peripherals = [UUID: CBPeripheral]()
     
     weak var delegate: BluetoothMasterManagerDelegate?
-    
-    private override init() {
-        super.init()
-    }
-    
+}
+
+
+// MARK: - BluetoothMasterManagerInterface implementation
+extension BluetoothMasterManager: BluetoothMasterManagerInterface {
     func start() {
         manager = CBCentralManager(delegate: self, queue: nil)
+    }
+    
+    func assign(delegate: BluetoothMasterManagerDelegate) {
+        self.delegate = delegate
+    }
+    
+    func connectToPeripheral(withIdentifier identifier: UUID) {
+        guard let _peripheral = peripherals[identifier] else {
+            QLog("Trying to connect to non existing peripheral.", onLevel: .error)
+            return
+        }
+        
+        manager?.connect(_peripheral, options: nil)
     }
     
 }
@@ -44,38 +63,44 @@ extension BluetoothMasterManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
             QLog("Scanning for peripherals...", onLevel: .info)
-            central.scanForPeripherals(withServices: nil, options: nil)//[CBCentralManagerScanOptionAllowDuplicatesKey:true])
+            central.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
         } else {
             QLog("Bluetooth not available.", onLevel: .info)
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        let localDeviceName = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey) as? String
-//        if device?.contains(ConstantsShared.AdvertisementNameKeyString) == true {
-//            manager?.stopScan()
-//        }
-        
         guard let _ = peripheral.name else {
             //QLog("Scanned peripheral has no name, thus will not be processed anymore.", onLevel: .info)
             return
         }
         
-        if let _existingPeripheral = peripherals.first(where: { $0.identifier == peripheral.identifier }) {
-            QLog("Did update device \(peripheral.name!) aka \(localDeviceName ?? "no local name")", onLevel: .info)
+        let localDeviceName = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey) as? String
+//        if device?.contains(ConstantsShared.AdvertisementNameKeyString) == true {
+//            manager?.stopScan()
+//        }
+        
+        if let _existingPeripheral = peripherals[peripheral.identifier] {
+            QLog("Did update device \(peripheral.name!) (\(localDeviceName ?? "no local name")) with id: \(peripheral.identifier)", onLevel: .info)
+            
             delegate?.didUpdate(_existingPeripheral)
         } else {
-            QLog("Did find new device: \(peripheral.name!) aka \(localDeviceName ?? "no local name")", onLevel: .info)
-            peripherals.append(peripheral)
-            delegate?.didDiscover(peripheral, with: advertisementData)
+            QLog("Did find new device: \(peripheral.name!) (\(localDeviceName ?? "no local name")) with id: \(peripheral.identifier)", onLevel: .info)
+
+            peripherals[peripheral.identifier] = peripheral
+            peripherals[peripheral.identifier]?.delegate = self
             
-            peripheral.delegate = self
-            manager?.connect(peripheral, options: nil)
+            delegate?.didDiscover(peripheral, with: advertisementData)
         }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        QLog("Did connect to peripheral: \(peripheral).", onLevel: .info)
+        guard let _ = peripherals[peripheral.identifier] else {
+            QLog("Did connect to unknown peripheral.", onLevel: .error)
+            return
+        }
+        
+        QLog("Did connect to peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
         
         peripheral.discoverServices(nil)
     }
@@ -85,12 +110,13 @@ extension BluetoothMasterManager: CBCentralManagerDelegate {
 // MARK: - CBPeripheralDelegate methods
 extension BluetoothMasterManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        guard let _ = peripherals.first(where: { $0.identifier == peripheral.identifier }) else {
+        guard let _ = peripherals[peripheral.identifier] else {
             QLog("Did discover services for unknown peripheral.", onLevel: .error)
             return
         }
         
-        QLog("Did discover \(peripheral.services?.count ?? 0) services.", onLevel: .info)
+        QLog("Did discover \(peripheral.services?.count ?? 0) services for peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
+        
         delegate?.didDiscoverServices(of: peripheral)
 
 //        if let _services = peripheral.services {
@@ -104,6 +130,11 @@ extension BluetoothMasterManager: CBPeripheralDelegate {
 //                }
 //            }
 //        }
+        
+        func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+            QLog("Did disconnect from peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
+            delegate?.didDisconnect(peripheral)
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {

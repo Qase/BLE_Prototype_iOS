@@ -11,15 +11,17 @@ import SnapKit
 
 class DevicesTableViewCell: UITableViewCell {
     
-    let title = UILabel()
-    let subtitle = UILabel()
+    let nameLabel = UILabel()
+    let statusLabel = UILabel()
+    let numOfServicesLabel = UILabel()
     let lastAdvertisationLabel = UILabel()
     
     var isEnabled: Bool = true {
-        didSet {
-            title.isEnabled = oldValue
-            subtitle.isEnabled = oldValue
-            lastAdvertisationLabel.isEnabled = oldValue
+        willSet {
+            nameLabel.isEnabled = newValue
+            numOfServicesLabel.isEnabled = newValue
+            statusLabel.isEnabled = newValue
+            lastAdvertisationLabel.isEnabled = newValue
         }
     }
     
@@ -35,11 +37,14 @@ class DevicesTableViewCell: UITableViewCell {
             make.right.bottom.equalToSuperview().offset(-10)
         }
         
-        title.font = UIFont.boldSystemFont(ofSize: 15)
-        vStackView.addArrangedSubview(title)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        vStackView.addArrangedSubview(nameLabel)
         
-        subtitle.font = UIFont.systemFont(ofSize: 15)
-        vStackView.addArrangedSubview(subtitle)
+        statusLabel.font = UIFont.systemFont(ofSize: 15)
+        vStackView.addArrangedSubview(statusLabel)
+        
+        numOfServicesLabel.font = UIFont.systemFont(ofSize: 15)
+        vStackView.addArrangedSubview(numOfServicesLabel)
         
         lastAdvertisationLabel.font = UIFont.italicSystemFont(ofSize: 15)
         vStackView.addArrangedSubview(lastAdvertisationLabel)
