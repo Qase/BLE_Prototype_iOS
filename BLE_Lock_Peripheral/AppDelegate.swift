@@ -7,22 +7,34 @@
 //
 
 import UIKit
+import QuantiLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var timer: Timer?
+    
 
     var bleManager:MyPeripheralManager!
+    
+    static weak var shared: AppDelegate!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let logManager = LogManager.shared
+        
+        let consoleLogger = ConsoleLogger()
+        consoleLogger.levels = [.verbose, .info, .debug, .warn, .error]
+        logManager.add(consoleLogger)
+        
         print("didFinishLaunchingWithOptions")
         
+        AppDelegate.shared = self
+        
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            print("Timer keepAlive tick")
+            QLog("Timer keepAlive tick", onLevel: .debug)
         }
         
         bleManager = MyPeripheralManager()
