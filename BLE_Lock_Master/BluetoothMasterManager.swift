@@ -19,12 +19,14 @@ protocol BluetoothMasterManagerDelegate: class {
     func didDiscoverServices(of peripheral: CBPeripheral)
     func didUpdate(_ peripheral: CBPeripheral)
     func didDisconnect(_ peripheral: CBPeripheral)
+    func didUpdate(_ value: String, forCharacteristic characteristic: CBCharacteristic)
 }
 
 protocol BluetoothMasterManagerInterface: class {
     func start()
     func assign(delegate: BluetoothMasterManagerDelegate)
     func connectToPeripheral(withIdentifier identifier: UUID)
+    func writeCurrentDateToPeripheral(withIdentifier identifier: UUID)
 }
 
 class BluetoothMasterManager: NSObject {
@@ -55,6 +57,16 @@ extension BluetoothMasterManager: BluetoothMasterManagerInterface {
         manager?.connect(_peripheral, options: nil)
     }
     
+    func writeCurrentDateToPeripheral(withIdentifier identifier: UUID) {
+        guard let _peripheral = peripherals[identifier] else {
+            QLog("Trying to write a current date to non existing peripheral.", onLevel: .error)
+            return
+        }
+        
+        
+        _peripheral.writeValue(<#T##data: Data##Data#>, for: <#T##CBCharacteristic#>, type: <#T##CBCharacteristicWriteType#>)
+    }
+    
 }
 
 
@@ -63,7 +75,7 @@ extension BluetoothMasterManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
             QLog("Scanning for peripherals...", onLevel: .info)
-            central.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
+            central.scanForPeripherals(withServices: nil, options: nil)//[CBCentralManagerScanOptionAllowDuplicatesKey:true])
         } else {
             QLog("Bluetooth not available.", onLevel: .info)
         }
@@ -119,6 +131,11 @@ extension BluetoothMasterManager: CBPeripheralDelegate {
         
         delegate?.didDiscoverServices(of: peripheral)
 
+        if let _service = peripheral.services?.first(where: { $0.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString) }) {
+            QLog("Found specified service: \(_service)", onLevel: .info)
+            peripheral.discoverCharacteristics([CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString)], for: _service)
+        }
+        
 //        if let _services = peripheral.services {
 //            for service in _services {
 //                let thisService = service as CBService
@@ -129,15 +146,19 @@ extension BluetoothMasterManager: CBPeripheralDelegate {
 //                    peripheral.discoverCharacteristics(nil, for: thisService)
 //                }
 //            }
-//        }
-        
-        func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-            QLog("Did disconnect from peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
-            delegate?.didDisconnect(peripheral)
-        }
     }
     
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        QLog("Did disconnect from peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
+        delegate?.didDisconnect(peripheral)
+    }
+    
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        if let _characteristic = service.characteristics?.first(where: { $0.uuid == CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString) }) {
+            QLog("Found specified characteristic: \(_characteristic)", onLevel: .info)
+            peripheral.setNotifyValue(true, for: _characteristic)
+        }
 //        guard self.peripheral == peripheral else {
 //            return
 //        }
@@ -150,6 +171,19 @@ extension BluetoothMasterManager: CBPeripheralDelegate {
 //            }
 //        }
     }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        if characteristic.uuid == CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString) {
+            let value = characteristic.value.map({ (data) -> String in
+                return String(data: data, encoding: .utf8) ?? ""
+            })
+            
+            if let _value = value {
+                delegate?.didUpdate(_value, forCharacteristic: characteristic)
+            }
+        }
+    }
+
 }
 
 

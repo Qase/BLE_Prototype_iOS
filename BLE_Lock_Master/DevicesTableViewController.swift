@@ -164,7 +164,13 @@ extension DevicesTableViewController: BluetoothMasterManagerDelegate {
         }
     }
 
-
+    func didUpdate(_ value: String, forCharacteristic characteristic: CBCharacteristic) {
+        DispatchQueue.main.async {
+            let alertViewController = UIAlertController(title: "New characteristic value", message: "Received new characteristic's value: \(value)", preferredStyle: .alert)
+            alertViewController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertViewController, animated: true, completion: nil)
+        }
+    }
 
     
 }

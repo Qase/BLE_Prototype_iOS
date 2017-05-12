@@ -29,7 +29,7 @@ struct PeripheralDevice {
     }
     
     func isAlive() -> Bool {
-        let nowMinus5Mins = Calendar.current.date(byAdding: .minute, value: -2, to: Date())!
+        let nowMinus5Mins = Calendar.current.date(byAdding: .minute, value: -5, to: Date())!
         return nowMinus5Mins < lastAdvertisation || status == .connected
     }
 }
