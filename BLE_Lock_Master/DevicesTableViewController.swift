@@ -98,6 +98,33 @@ extension DevicesTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return peripheralDevices.count
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        guard let _peripheral = peripheralDevices[indexPath.row], _peripheral.status == .connected else {
+            return []
+        }
+        
+        let sendDateAction = UITableViewRowAction(style: .normal, title: "Send date") { (_, indexPath) in
+            guard let _peripheralIdentifier = self.peripheralDevices[indexPath.row]?.identifier else {
+                QLog("Trying to send date to peripheral device that is unknown.", onLevel: .error)
+                return
+            }
+            
+            guard self.peripheralDevices[indexPath.row]?.status == .connected else {
+                QLog("Trying to send date to peripheral device that is not connected.", onLevel: .error)
+                return
+            }
+            
+            self.bluetoothMasterManager.writeCurrentDateToPeripheral(withIdentifier: _peripheralIdentifier)
+            
+            let alertViewController = UIAlertController(title: "Data sent", message: "Current date was written to remote WRITE characteristic of the peripheral device.", preferredStyle: .alert)
+            alertViewController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertViewController, animated: true, completion: nil)
+        }
+        
+        sendDateAction.backgroundColor = .blue
+        return [sendDateAction]
+    }
 }
 
 
@@ -111,7 +138,7 @@ extension DevicesTableViewController: BluetoothMasterManagerDelegate {
         }
         
         let localPeripheralName = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey) as? String
-        let fullPeripheralName = localPeripheralName != nil ? "\(peripheral.name!) (\(localPeripheralName!))" : peripheral.name!
+        let fullPeripheralName = localPeripheralName != nil ? "\(peripheral.name ?? "") (\(localPeripheralName ?? ""))" : peripheral.name ?? ""
         peripheralDevices[peripheralDevices.count] = PeripheralDevice(identifier: peripheral.identifier, name: fullPeripheralName, lastAdvertisation: Date())
         
         DispatchQueue.main.async {

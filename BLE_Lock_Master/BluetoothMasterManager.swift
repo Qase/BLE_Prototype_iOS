@@ -33,6 +33,7 @@ class BluetoothMasterManager: NSObject {
 
     fileprivate var manager: CBCentralManager?
     fileprivate var peripherals = [UUID: CBPeripheral]()
+    fileprivate var writableCharacteristic: CBCharacteristic?
     
     weak var delegate: BluetoothMasterManagerDelegate?
 }
@@ -63,8 +64,16 @@ extension BluetoothMasterManager: BluetoothMasterManagerInterface {
             return
         }
         
+        guard let _message = Date().asString().data(using: .utf8) else {
+            QLog("Message could not be converted from Date -> String -> Data.", onLevel: .error)
+            return
+        }
         
-        _peripheral.writeValue(<#T##data: Data##Data#>, for: <#T##CBCharacteristic#>, type: <#T##CBCharacteristicWriteType#>)
+        guard let _writableCharacteristic = writableCharacteristic else {
+            QLog("Writable characteristic is not available while trying to write current date to it.", onLevel: .error)
+            return
+        }
+        _peripheral.writeValue(_message, for: _writableCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
     }
     
 }
@@ -93,11 +102,11 @@ extension BluetoothMasterManager: CBCentralManagerDelegate {
 //        }
         
         if let _existingPeripheral = peripherals[peripheral.identifier] {
-            QLog("Did update device \(peripheral.name!) (\(localDeviceName ?? "no local name")) with id: \(peripheral.identifier)", onLevel: .info)
+            QLog("Did update device \(peripheral.name ?? "") (\(localDeviceName ?? "no local name")) with id: \(peripheral.identifier)", onLevel: .info)
             
             delegate?.didUpdate(_existingPeripheral)
         } else {
-            QLog("Did find new device: \(peripheral.name!) (\(localDeviceName ?? "no local name")) with id: \(peripheral.identifier)", onLevel: .info)
+            QLog("Did find new device: \(peripheral.name ?? "") (\(localDeviceName ?? "no local name")) with id: \(peripheral.identifier)", onLevel: .info)
 
             peripherals[peripheral.identifier] = peripheral
             peripherals[peripheral.identifier]?.delegate = self
@@ -112,7 +121,7 @@ extension BluetoothMasterManager: CBCentralManagerDelegate {
             return
         }
         
-        QLog("Did connect to peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
+        QLog("Did connect to peripheral: \(peripheral.name ?? "") with id: \(peripheral.identifier).", onLevel: .info)
         
         peripheral.discoverServices(nil)
     }
@@ -127,49 +136,43 @@ extension BluetoothMasterManager: CBPeripheralDelegate {
             return
         }
         
-        QLog("Did discover \(peripheral.services?.count ?? 0) services for peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
+        QLog("Did discover \(peripheral.services?.count ?? 0) services for peripheral: \(peripheral.name ?? "") with id: \(peripheral.identifier).", onLevel: .info)
         
         delegate?.didDiscoverServices(of: peripheral)
 
-        if let _service = peripheral.services?.first(where: { $0.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString) }) {
-            QLog("Found specified service: \(_service)", onLevel: .info)
-            peripheral.discoverCharacteristics([CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString)], for: _service)
+        // Find service with READ characteristic
+        if let _readService = peripheral.services?.first(where: { $0.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString) }) {
+            QLog("Found READ service: \(_readService).", onLevel: .info)
+            
+            peripheral.discoverCharacteristics([CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString)], for: _readService)
         }
         
-//        if let _services = peripheral.services {
-//            for service in _services {
-//                let thisService = service as CBService
-//    
-//                if thisService.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString) || thisService.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString2) {
-//                    QLog("Service \(thisService)", onLevel: .info)
-//    
-//                    peripheral.discoverCharacteristics(nil, for: thisService)
-//                }
-//            }
+        // Find service with WRITE characteristic
+        if let _writeService = peripheral.services?.first(where: { $0.uuid == CBUUID(string: ConstantsShared.MainServiceUUIDString2) }) {
+            QLog("Found WRITE service: \(_writeService).", onLevel: .info)
+            
+            peripheral.discoverCharacteristics([CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString2)], for: _writeService)
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        QLog("Did disconnect from peripheral: \(peripheral.name!) with id: \(peripheral.identifier).", onLevel: .info)
+        QLog("Did disconnect from peripheral: \(peripheral.name ?? "") with id: \(peripheral.identifier).", onLevel: .info)
         delegate?.didDisconnect(peripheral)
     }
     
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        // READ characteristic
         if let _characteristic = service.characteristics?.first(where: { $0.uuid == CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString) }) {
-            QLog("Found specified characteristic: \(_characteristic)", onLevel: .info)
+            QLog("Found READ characteristic: \(_characteristic).", onLevel: .info)
             peripheral.setNotifyValue(true, for: _characteristic)
         }
-//        guard self.peripheral == peripheral else {
-//            return
-//        }
-//        
-//        QLog("Did discover \(service.characteristics?.count ?? 0) characteristics.", onLevel: .info)
-//        
-//        if let _characteristics = service.characteristics {
-//            for characteristic in _characteristics {
-//                print(characteristic)
-//            }
-//        }
+        
+        // WRITE characteristic
+        if let _writeCharacteristic = service.characteristics?.first(where: { $0.uuid == CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString2) }) {
+            QLog("Found WRITE characteristic: \(_writeCharacteristic).", onLevel: .info)
+            self.writableCharacteristic = _writeCharacteristic
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
