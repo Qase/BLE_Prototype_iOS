@@ -14,6 +14,7 @@ import CoreBluetooth
 
 class DevicesTableViewController: UIViewController {
     fileprivate let tableView = UITableView()
+    fileprivate let refreshControl = UIRefreshControl()
     
     fileprivate let bluetoothMasterManager: BluetoothMasterManagerInterface = BluetoothMasterManager()
     fileprivate var peripheralDevices = [Int: PeripheralDevice]()
@@ -38,16 +39,15 @@ class DevicesTableViewController: UIViewController {
         bluetoothMasterManager.assign(delegate: self)
         bluetoothMasterManager.start()
         
-        keepRefreshingPeripheralDevices()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
-    func keepRefreshingPeripheralDevices(every timeInterval: TimeInterval = 15.0) {
-        Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { (_) in
-            QLog("Checking availability of peripheral devices.", onLevel: .info)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+    dynamic private func refresh() {
+        QLog("Checking availability of peripheral devices.", onLevel: .info)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { 
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 
@@ -55,11 +55,7 @@ class DevicesTableViewController: UIViewController {
 
 
 // MARK: - UITableViewDelegate methods
-extension DevicesTableViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 90
-//    }
-    
+extension DevicesTableViewController: UITableViewDelegate {    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let _peripheralDevice = peripheralDevices[indexPath.row] else {
             QLog("Did not find peripheral device that was clicked to connect.", onLevel: .error)
@@ -100,7 +96,7 @@ extension DevicesTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard let _peripheral = peripheralDevices[indexPath.row], _peripheral.status == .connected else {
+        guard let _ = peripheralDevices[indexPath.row] else {
             return []
         }
         
@@ -111,15 +107,23 @@ extension DevicesTableViewController: UITableViewDataSource {
             }
             
             guard self.peripheralDevices[indexPath.row]?.status == .connected else {
-                QLog("Trying to send date to peripheral device that is not connected.", onLevel: .error)
+                let notConnectedAlert = UIAlertController(title: "Device not connected", message: "Data cannot be send to a peripheral device since it is not connected.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    self.tableView.setEditing(false, animated: true)
+                })
+                notConnectedAlert.addAction(action)
+                self.present(notConnectedAlert, animated: true, completion: nil)
                 return
             }
             
             self.bluetoothMasterManager.writeCurrentDateToPeripheral(withIdentifier: _peripheralIdentifier)
             
-            let alertViewController = UIAlertController(title: "Data sent", message: "Current date was written to remote WRITE characteristic of the peripheral device.", preferredStyle: .alert)
-            alertViewController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertViewController, animated: true, completion: nil)
+            let dataSentConfirmation = UIAlertController(title: "Data sent", message: "Current date was written to remote WRITE characteristic of the peripheral device.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.tableView.setEditing(false, animated: true)
+            })
+            dataSentConfirmation.addAction(action)
+            self.present(dataSentConfirmation, animated: true, completion: nil)
         }
         
         sendDateAction.backgroundColor = .blue
@@ -139,11 +143,11 @@ extension DevicesTableViewController: BluetoothMasterManagerDelegate {
         
         let localPeripheralName = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey) as? String
         let fullPeripheralName = localPeripheralName != nil ? "\(peripheral.name ?? "") (\(localPeripheralName ?? ""))" : peripheral.name ?? ""
-        peripheralDevices[peripheralDevices.count] = PeripheralDevice(identifier: peripheral.identifier, name: fullPeripheralName, lastAdvertisation: Date())
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        let numOfServices = ((advertisementData as NSDictionary).object(forKey: CBAdvertisementDataServiceUUIDsKey) as? NSArray)?.count ?? 0
+        peripheralDevices[peripheralDevices.count] = PeripheralDevice(identifier: peripheral.identifier, name: fullPeripheralName, numOfServices: numOfServices, lastAdvertisation: Date())
+        
+        self.tableView.reloadData()
     }
     
     func didUpdate(_ peripheral: CBPeripheral) {
@@ -156,9 +160,7 @@ extension DevicesTableViewController: BluetoothMasterManagerDelegate {
                                                        status: _peripheralDevice.status, numOfServices: _peripheralDevice.numOfServices, lastAdvertisation: Date())
         peripheralDevices[_key] = updatedPeripheralDevice
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 
     func didDiscoverServices(of peripheral: CBPeripheral) {
@@ -171,9 +173,7 @@ extension DevicesTableViewController: BluetoothMasterManagerDelegate {
                                                        status: .connected, numOfServices: peripheral.services?.count ?? 0, lastAdvertisation: _peripheralDevice.lastAdvertisation)
         peripheralDevices[_key] = updatedPeripheralDevice
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
     
     func didDisconnect(_ peripheral: CBPeripheral) {
@@ -186,9 +186,7 @@ extension DevicesTableViewController: BluetoothMasterManagerDelegate {
                                                        status: .disconnected, numOfServices: peripheral.services?.count ?? 0, lastAdvertisation: _peripheralDevice.lastAdvertisation)
         peripheralDevices[_key] = updatedPeripheralDevice
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 
     func didUpdate(_ value: String, forCharacteristic characteristic: CBCharacteristic) {
