@@ -34,7 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate.shared = self
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            QLog("Timer keepAlive tick", onLevel: .debug)
+            if UIApplication.shared.applicationState == .background{
+                QLog("Timer keepAlive tick", onLevel: .debug)
+            }
+            
         }
         
         bleManager = MyPeripheralManager()

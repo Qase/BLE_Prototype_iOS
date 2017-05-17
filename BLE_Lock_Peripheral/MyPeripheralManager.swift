@@ -42,7 +42,7 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
             sharedPM.add(service)
             
             let service2 = CBMutableService(type: CBUUID(string: ConstantsShared.MainServiceUUIDString2), primary: true)
-            let char2 = CBMutableCharacteristic(type: CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString2), properties: [.read, .write] , value: nil, permissions: CBAttributePermissions.writeable)
+            let char2 = CBMutableCharacteristic(type: CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString2), properties: [.read, .writeWithoutResponse] , value: nil, permissions: CBAttributePermissions.writeable)
             service2.characteristics = [char2]
             sharedPM.add(service2)
             
@@ -66,8 +66,15 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
         QLog("MyPeripheralManager \(#function) \(peripheral) \(request)", onLevel: .info)
     }
     
-    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        QLog("MyPeripheralManager \(#function) \(peripheral) \(requests)", onLevel: .info)
+    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite CBATTRequest: [CBATTRequest]) {
+        QLog("MyPeripheralManager \(#function) \(peripheral) \(CBATTRequest)", onLevel: .info)
+        for request in CBATTRequest{
+            
+            let data = String(data: request.value!, encoding: .utf8)
+            QLog("Request Value \(data ?? "")", onLevel: .info)
+            
+        }
+        
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
