@@ -29,7 +29,7 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        QLog("peripheralManagerDidUpdateState", onLevel: .debug)
+        QLog("peripheralManagerDidUpdateState \(peripheral.state)", onLevel: .info)
         
         
         if peripheral.state == CBManagerState.poweredOn {
@@ -45,8 +45,21 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
             let char2 = CBMutableCharacteristic(type: CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString2), properties: [.read, .writeWithoutResponse] , value: nil, permissions: CBAttributePermissions.writeable)
             service2.characteristics = [char2]
             sharedPM.add(service2)
+        }
             
-
+        switch peripheral.state {
+        case .poweredOn:
+            QLog(" - poweredOn", onLevel: .debug)
+        case .poweredOff:
+            QLog(" - poweredOff", onLevel: .debug)
+        case .resetting:
+            QLog(" - resetting", onLevel: .debug)
+        case .unauthorized:
+            QLog(" - unauthorized", onLevel: .debug)
+        case .unknown:
+            QLog(" - unknown", onLevel: .debug)
+        case .unsupported:
+            QLog(" - unsupported", onLevel: .debug)
         }
     
     }
@@ -71,7 +84,7 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
         for request in CBATTRequest{
             
             let data = String(data: request.value!, encoding: .utf8)
-            QLog("Request Value \(data ?? "")", onLevel: .info)
+            QLog(" - Request Value \(data ?? "")", onLevel: .info)
             
         }
         
