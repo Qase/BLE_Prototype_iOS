@@ -68,9 +68,9 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
         QLog("MyPeripheralManager \(#function)", onLevel: .info)
     }
     
-    func sendData(){
+    func sendData(additionalMessage:String = ""){
         
-        let tosendString = "XXX \(Date())"
+        let tosendString = "\(additionalMessage) \(Date())"
         let tosend = tosendString.data(using: .utf8)
         QLog("MyPeripheralManager sendData \(tosendString) \(String(describing: tosend))", onLevel: .info)
         sharedPM.updateValue(tosend!, for: subscribeChar, onSubscribedCentrals: nil)    }
@@ -81,6 +81,8 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite CBATTRequest: [CBATTRequest]) {
         QLog("MyPeripheralManager \(#function) \(peripheral) \(CBATTRequest)", onLevel: .info)
+        
+        sendData(additionalMessage: "didReceiveWrite")
         for request in CBATTRequest{
             
             let data = String(data: request.value!, encoding: .utf8)
@@ -92,6 +94,6 @@ class MyPeripheralManager: NSObject, CBPeripheralManagerDelegate {
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
         QLog("\(#function)", onLevel: .debug)
-        sendData()
+        sendData(additionalMessage: "didSubscribeToCharacteristic")
     }
 }
