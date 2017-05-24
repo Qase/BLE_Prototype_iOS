@@ -20,39 +20,54 @@ class ViewController: UIViewController {
         self.title = "Peripheral App"
         QLog("viewDidLoad()", onLevel: .info)
         
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         
-        sendDataButton.setTitle("Send Data", for: UIControlState.normal)
-        sendDataButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
-        sendDataButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
-        sendDataButton.addTarget(self, action: #selector(sendData(sender:)), for: UIControlEvents.touchUpInside)
+        let vStackView = UIStackView()
+        vStackView.axis = .vertical
+        vStackView.alignment = .center
+        vStackView.spacing = 10.0
         
-        self.view.addSubview(sendDataButton)
-        self.sendDataButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.topLayoutGuide.snp.bottom).offset(32)
-            //make.left.right.equalToSuperview()
-            make.centerX.equalTo(self.view.snp.centerX)
+        view.addSubview(vStackView)
+        vStackView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(50.0)
         }
+        
+        
+        //sendDataButton.setTitle("Send Data", for: UIControlState.normal)
+        sendDataButton.setTitle("Bluetooth peripheral", for: .normal)
+        sendDataButton.setTitleColor(UIColor.black, for: .normal)
+        sendDataButton.titleLabel?.font = UIFont.systemFont(ofSize: 24.0)
+        //sendDataButton.addTarget(self, action: #selector(sendData(sender:)), for: UIControlEvents.touchUpInside)
+        
+        vStackView.addArrangedSubview(sendDataButton)
+        
+        
+        let descriptionLabel = UILabel()
+        descriptionLabel.text = "Put app to the background!"
+        descriptionLabel.font = UIFont.italicSystemFont(ofSize: 18.0)
+        
+        vStackView.addArrangedSubview(descriptionLabel)
         
         let tapAction = UITapGestureRecognizer(target: self, action: #selector(self.sendMail(_:)))
         tapAction.numberOfTapsRequired = 7
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(tapAction)
     }
-    
+
     func sendMail(_ sender: UITapGestureRecognizer){
-        if !MFMailComposeViewController.canSendMail(){
+        if !MFMailComposeViewController.canSendMail() {
             return
         }
-        let receipient = "ios@quanti.cz"
         
+        let receipient = "ios@quanti.cz"
         let mailController = LogFilesViaMailViewController(withRecipients: [receipient])
         mailController.mailComposeDelegate = self
         mailController.navigationBar.tintColor = UIColor.blue
-        self.present(mailController, animated: true, completion: nil)
         
+        self.present(mailController, animated: true, completion: nil)
     }
-    
+
     
     func sendData(sender: UIButton!) {
         AppDelegate.shared.bleManager.sendData()

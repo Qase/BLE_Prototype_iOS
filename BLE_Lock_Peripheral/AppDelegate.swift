@@ -21,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static weak var shared: AppDelegate!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        QLog("\(#function) ::: \(launchOptions) ", onLevel: .info)
-        // Override point for customization after application launch.
-        
+        // Set loging
         let logManager = LogManager.shared
         
         let consoleLogger = ConsoleLogger()
@@ -34,14 +32,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fileLogger.levels = [.verbose, .info, .debug, .warn, .error]
         logManager.add(fileLogger)
         
+        QLog("\(#function) ::: \(launchOptions ?? [:])", onLevel: .info)
+        // Override point for customization after application launch.
+        
         AppDelegate.shared = self
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            if UIApplication.shared.applicationState == .background{
+            if UIApplication.shared.applicationState == .background {
                 QLog("Timer keepAlive tick", onLevel: .debug)
             }
-            
         }
+        
+        
+        AppDelegate.shared = self
         
         bleManager = MyPeripheralManager()
         bleManager.startManager()
