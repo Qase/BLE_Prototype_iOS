@@ -47,13 +47,12 @@ extension MyPeripheralManager: CBPeripheralManagerDelegate {
         }
         
         if peripheral.state == CBManagerState.poweredOn {
-            let service = CBMutableService(type: CBUUID(string: ConstantsShared.MainServiceUUIDString), primary: true)
+            let service1 = CBMutableService(type: CBUUID(string: ConstantsShared.MainServiceUUIDString), primary: true)
             let char1 = CBMutableCharacteristic(type: CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString), properties: [.notify, .read] , value: nil, permissions: CBAttributePermissions.readable)
+            service1.characteristics = [char1]
+            sharedPM.add(service1)
             
             subscribeChar = char1
-            
-            service.characteristics = [char1]
-            sharedPM.add(service)
             
             let service2 = CBMutableService(type: CBUUID(string: ConstantsShared.MainServiceUUIDString2), primary: true)
             let char2 = CBMutableCharacteristic(type: CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString2), properties: [.read, .writeWithoutResponse] , value: nil, permissions: CBAttributePermissions.writeable)
@@ -80,26 +79,27 @@ extension MyPeripheralManager: CBPeripheralManagerDelegate {
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
         QLog("\(#function)", onLevel: .debug)
-        sendData(additionalMessage: "didSubscribeToCharacteristic")
+        //sendData(additionalMessage: "didSubscribeToCharacteristic")
     }
     
     func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {
         QLog("MyPeripheralManager \(#function)", onLevel: .info)
     }
     
-    func sendData(additionalMessage:String = "") {
-        let tosendString = "\(additionalMessage) \(Date())"
-        let tosend = tosendString.data(using: .utf8)
-        QLog("MyPeripheralManager sendData \(tosendString) \(String(describing: tosend))", onLevel: .info)
-        sharedPM.updateValue(tosend!, for: subscribeChar, onSubscribedCentrals: nil)
+    func sendData(additionalMessage: String = "") {
+        let toSendString = "\(additionalMessage) \(Date())"
+        let toSend = toSendString.data(using: .utf8)
+        
+        QLog("MyPeripheralManager sendData \(toSendString) \(String(describing: toSend))", onLevel: .info)
+        
+        sharedPM.updateValue(toSend!, for: subscribeChar, onSubscribedCentrals: nil)
     }
         
-    func sendData() {
-        let tosendString = "XXX \(Date())"
-        let tosend = tosendString.data(using: .utf8)
-        QLog("MyPeripheralManager sendData \(tosendString) \(String(describing: tosend))", onLevel: .info)
-        sharedPM.updateValue(tosend!, for: subscribeChar, onSubscribedCentrals: nil)
-    }
-
+//    func sendData() {
+//        let tosendString = "XXX \(Date())"
+//        let tosend = tosendString.data(using: .utf8)
+//        QLog("MyPeripheralManager sendData \(tosendString) \(String(describing: tosend))", onLevel: .info)
+//        sharedPM.updateValue(tosend!, for: subscribeChar, onSubscribedCentrals: nil)
+//    }
     
 }
