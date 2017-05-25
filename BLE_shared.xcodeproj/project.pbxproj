@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		5B6FBC761ED5CD2300CBBDCD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FBC751ED5CD2300CBBDCD /* DateExtension.swift */; };
+		5BEEB6B81ED6FE6700694F22 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEEB6B71ED6FE6700694F22 /* UIViewControllerExtension.swift */; };
+		5BEEB6BA1ED7006E00694F22 /* QuantiLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BEEB6B91ED7006E00694F22 /* QuantiLogger.framework */; };
 		63814B301EB380E6001A2B65 /* BLE_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 63814B2E1EB380E6001A2B65 /* BLE_shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63814B371EB38117001A2B65 /* ConstantsShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B361EB38117001A2B65 /* ConstantsShared.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B6FBC751ED5CD2300CBBDCD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		5BEEB6B71ED6FE6700694F22 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		5BEEB6B91ED7006E00694F22 /* QuantiLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuantiLogger.framework; path = Carthage/Build/iOS/QuantiLogger.framework; sourceTree = "<group>"; };
 		63814B2B1EB380E6001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63814B2E1EB380E6001A2B65 /* BLE_shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE_shared.h; sourceTree = "<group>"; };
 		63814B2F1EB380E6001A2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -25,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BEEB6BA1ED7006E00694F22 /* QuantiLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -34,6 +39,7 @@
 		5B0DE59E1EB8B6A600163E3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BEEB6B91ED7006E00694F22 /* QuantiLogger.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -41,9 +47,20 @@
 		5B6FBC741ED5CD1200CBBDCD /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				63814B361EB38117001A2B65 /* ConstantsShared.swift */,
 				5B6FBC751ED5CD2300CBBDCD /* DateExtension.swift */,
+				5BEEB6B71ED6FE6700694F22 /* UIViewControllerExtension.swift */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		5BEEB6B61ED6FE2F00694F22 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				63814B2E1EB380E6001A2B65 /* BLE_shared.h */,
+				63814B2F1EB380E6001A2B65 /* Info.plist */,
+			);
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		63814B211EB380E6001A2B65 = {
@@ -66,10 +83,8 @@
 		63814B2D1EB380E6001A2B65 /* BLE_shared */ = {
 			isa = PBXGroup;
 			children = (
+				5BEEB6B61ED6FE2F00694F22 /* SupportingFiles */,
 				5B6FBC741ED5CD1200CBBDCD /* Base */,
-				63814B2E1EB380E6001A2B65 /* BLE_shared.h */,
-				63814B2F1EB380E6001A2B65 /* Info.plist */,
-				63814B361EB38117001A2B65 /* ConstantsShared.swift */,
 			);
 			path = BLE_shared;
 			sourceTree = "<group>";
@@ -157,6 +172,7 @@
 			files = (
 				63814B371EB38117001A2B65 /* ConstantsShared.swift in Sources */,
 				5B6FBC761ED5CD2300CBBDCD /* DateExtension.swift in Sources */,
+				5BEEB6B81ED6FE6700694F22 /* UIViewControllerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +290,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = BLE_shared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -295,6 +315,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = BLE_shared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -57,25 +57,8 @@ class ViewController: UIViewController {
         
         vStackView.addArrangedSubview(descriptionLabel)
         
-        let tapAction = UITapGestureRecognizer(target: self, action: #selector(self.sendMail(_:)))
-        tapAction.numberOfTapsRequired = 7
-        self.view.isUserInteractionEnabled = true
-        self.view.addGestureRecognizer(tapAction)
+        setupLogAction()
     }
-
-    func sendMail(_ sender: UITapGestureRecognizer){
-        if !MFMailComposeViewController.canSendMail() {
-            return
-        }
-        
-        let receipient = "ios@quanti.cz"
-        let mailController = LogFilesViaMailViewController(withRecipients: [receipient])
-        mailController.mailComposeDelegate = self
-        mailController.navigationBar.tintColor = UIColor.blue
-        
-        self.present(mailController, animated: true, completion: nil)
-    }
-
     
     func sendData(sender: UIButton!) {
         AppDelegate.shared.bleManager.sendData()
@@ -83,10 +66,4 @@ class ViewController: UIViewController {
 
 }
 
-
-extension ViewController: MFMailComposeViewControllerDelegate {
-    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-}
 

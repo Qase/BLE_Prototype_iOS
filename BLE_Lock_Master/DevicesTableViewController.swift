@@ -39,6 +39,8 @@ class DevicesTableViewController: UIViewController {
         bluetoothMasterManager.assign(delegate: self)
         bluetoothMasterManager.start()
         
+        setupLogAction()
+        
         //refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         //tableView.addSubview(refreshControl)
     }

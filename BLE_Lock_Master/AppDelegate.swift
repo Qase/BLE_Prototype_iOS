@@ -26,6 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         consoleLogger.levels = [.verbose, .info, .debug, .warn, .error]
         logManager.add(consoleLogger)
         
+        let fileLogger = FileLogger()
+        fileLogger.levels = [.verbose, .info, .debug, .warn, .error]
+        logManager.add(fileLogger)
+        
         
         // Draw controller
         window = UIWindow(frame: UIScreen.main.bounds)
