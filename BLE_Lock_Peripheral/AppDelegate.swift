@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        
         AppDelegate.shared = self
         
         bleManager = MyPeripheralManager()

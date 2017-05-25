@@ -27,7 +27,6 @@
 		5B61929F1EB8C561007547CF /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6192961EB8C561007547CF /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B6192AC1EB8C688007547CF /* BLE_Lock_MasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6192AB1EB8C688007547CF /* BLE_Lock_MasterTests.swift */; };
 		5B73400D1EC1C7DF00E23438 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B73400A1EC1C7D700E23438 /* RxTest.framework */; };
-		5BCA76AD1EC1E52800BB3A3C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCA76AC1EC1E52800BB3A3C /* DateExtension.swift */; };
 		63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B091EB21596001A2B65 /* AppDelegate.swift */; };
 		63814B0C1EB21596001A2B65 /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B0B1EB21596001A2B65 /* DevicesTableViewController.swift */; };
 		63814B111EB21596001A2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63814B101EB21596001A2B65 /* Assets.xcassets */; };
@@ -79,7 +78,6 @@
 		5B6192AB1EB8C688007547CF /* BLE_Lock_MasterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE_Lock_MasterTests.swift; sourceTree = "<group>"; };
 		5B6192AD1EB8C688007547CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B73400A1EC1C7D700E23438 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = ../Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
-		5BCA76AC1EC1E52800BB3A3C /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		63814B061EB21596001A2B65 /* BLE_Lock_Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE_Lock_Master.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63814B091EB21596001A2B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63814B0B1EB21596001A2B65 /* DevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				5B0DE5511EB887E100163E3B /* Constants.swift */,
-				5BCA76AC1EC1E52800BB3A3C /* DateExtension.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -317,7 +314,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B0DE5521EB887E100163E3B /* Constants.swift in Sources */,
-				5BCA76AD1EC1E52800BB3A3C /* DateExtension.swift in Sources */,
 				5B4E57DD1EC3079700A04618 /* PeripheralDevice.swift in Sources */,
 				63814B0C1EB21596001A2B65 /* DevicesTableViewController.swift in Sources */,
 				63814B0A1EB21596001A2B65 /* AppDelegate.swift in Sources */,

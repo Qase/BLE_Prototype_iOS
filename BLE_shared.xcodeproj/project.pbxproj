@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B6FBC761ED5CD2300CBBDCD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6FBC751ED5CD2300CBBDCD /* DateExtension.swift */; };
 		63814B301EB380E6001A2B65 /* BLE_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 63814B2E1EB380E6001A2B65 /* BLE_shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63814B371EB38117001A2B65 /* ConstantsShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63814B361EB38117001A2B65 /* ConstantsShared.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B6FBC751ED5CD2300CBBDCD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		63814B2B1EB380E6001A2B65 /* BLE_shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BLE_shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63814B2E1EB380E6001A2B65 /* BLE_shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE_shared.h; sourceTree = "<group>"; };
 		63814B2F1EB380E6001A2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5B6FBC741ED5CD1200CBBDCD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5B6FBC751ED5CD2300CBBDCD /* DateExtension.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		63814B211EB380E6001A2B65 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		63814B2D1EB380E6001A2B65 /* BLE_shared */ = {
 			isa = PBXGroup;
 			children = (
+				5B6FBC741ED5CD1200CBBDCD /* Base */,
 				63814B2E1EB380E6001A2B65 /* BLE_shared.h */,
 				63814B2F1EB380E6001A2B65 /* Info.plist */,
 				63814B361EB38117001A2B65 /* ConstantsShared.swift */,
@@ -145,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63814B371EB38117001A2B65 /* ConstantsShared.swift in Sources */,
+				5B6FBC761ED5CD2300CBBDCD /* DateExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

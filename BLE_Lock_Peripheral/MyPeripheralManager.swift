@@ -87,12 +87,12 @@ extension MyPeripheralManager: CBPeripheralManagerDelegate {
     }
     
     func sendData(additionalMessage: String = "") {
-        let toSendString = "\(additionalMessage) \(Date())"
+        let toSendString = "\(additionalMessage) \(Date().asString())"
         let toSend = toSendString.data(using: .utf8)
         
         QLog("MyPeripheralManager sendData \(toSendString) \(String(describing: toSend))", onLevel: .info)
         
-        sharedPM.updateValue(toSend!, for: subscribeChar, onSubscribedCentrals: nil)
+        self.sharedPM.updateValue(toSend!, for: subscribeChar, onSubscribedCentrals: nil)
     }
         
 //    func sendData() {
