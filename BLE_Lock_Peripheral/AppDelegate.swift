@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fileLogger.levels = [.verbose, .info, .debug, .warn, .error]
         logManager.add(fileLogger)
         
+        let systemLogger = SystemLogger(subsystem: "cz.quanti.BLE-Lock-Peripheral", category: "logging")
+        systemLogger.levels = [.verbose, .info, .debug, .warn, .error]
+        logManager.add(systemLogger)
+        
         QLog("\(#function) ::: \(launchOptions ?? [:])", onLevel: .info)
         // Override point for customization after application launch.
         

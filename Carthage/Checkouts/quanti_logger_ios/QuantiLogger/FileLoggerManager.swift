@@ -80,9 +80,9 @@ class FileLoggerManager {
     
     
     /// Method to reset properties that control the correct flow of storing log files. 
-    /// - "currentLogFileNumber" represents the current loging file number
+    /// - "currentLogFileNumber" represents the current logging file number
     /// - "dateTimeOfLastLog" represents the last date the logger was used
-    /// - "numOfLogFiles" represents the number of files that are used for loging, can be set by a user
+    /// - "numOfLogFiles" represents the number of files that are used for logging, can be set by a user
     func resetPropertiesToDefaultValues() {
         currentLogFileNumber = 0
         dateOfLastLog = Date()
@@ -153,14 +153,15 @@ class FileLoggerManager {
     /// Method to write a log message into the current log file.
     ///
     /// - Parameters:
-    ///   - message: String loging message
-    ///   - level: Level of the loging message
-    func writeToLogFile(message: String, onLevel level: Level) {
+    ///   - message: String logging message
+    ///   - header: Log message unified header
+    ///   - level: Level of the logging message
+    func writeToLogFile(message: String, withMessageHeader messageHeader: String, onLevel level: Level) {
         guard let _logDirUrl = logDirUrl else { return }
         
         refreshCurrentLogFileStatus()
         
-        let contentToAppend = "\(QuantiLoggerConstants.FileLogger.logFileRecordSeparator)\n[\(level.rawValue) \(Date().toFullDateTimeString())]\n\(message)\n\n"
+        let contentToAppend = "\(QuantiLoggerConstants.FileLogger.logFileRecordSeparator)\n\(messageHeader)\n\(message)\n\n"
         
         let currentLogFileUrl = _logDirUrl.appendingPathComponent("\(currentLogFileNumber)").appendingPathExtension("log")
         do {
