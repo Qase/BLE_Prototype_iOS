@@ -30,6 +30,7 @@ import RxBluetoothKit
 class FakePeripheral: RxPeripheralType {
 
 
+    var objectId: UInt = 0
     var name: String? = nil
     var state: CBPeripheralState = CBPeripheralState.connected
     var rx_state: Observable<CBPeripheralState> = .never()

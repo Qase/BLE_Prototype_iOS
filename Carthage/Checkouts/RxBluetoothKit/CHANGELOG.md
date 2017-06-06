@@ -1,3 +1,17 @@
+# 3.0.12
+- Added option to enable logging of CoreBluetooth delegate values
+  used internally by RxBluetoothKit
+- Make objectId fields public for Service, Characteristic and Descriptor classes.
+
+# 3.0.11
+- Updated podspec file to proper version.
+
+# 3.0.10
+- Added objectId property to missing `Service`, `Characteristic` and `Descriptor` objetcs.
+
+# 3.0.9
+- Added objectId property to `Peripheral` object needed by react-native library. Should not be necessary in 4.x version of the library. 
+
 # 3.0.8
 - Support for multiple services/characteristics under the same UUID
 
