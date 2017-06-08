@@ -26,15 +26,16 @@ platform :ios do
   lane :test do
     scan
   end
-
+#BLE_Lock_Peripheral
   lane :crashlytics_master do
     gym(
       export_method: "ad-hoc",
-      scheme: "cz.quanti.BLE-Lock-Master",
+      scheme: "BLE_Lock_Master",
       clean: true,
       output_directory: "./build",
-    ) 
-    
+    )
+
+
   end
 
   lane :crashlytics_peripheral do

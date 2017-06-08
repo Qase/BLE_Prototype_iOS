@@ -35,6 +35,16 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
+### ios crashlytics_master
+```
+fastlane ios crashlytics_master
+```
+
+### ios crashlytics_peripheral
+```
+fastlane ios crashlytics_peripheral
+```
+
 ### ios refresh_certificate
 ```
 fastlane ios refresh_certificate
