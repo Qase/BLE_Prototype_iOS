@@ -1,0 +1,9 @@
+{
+  "commitish" : "3.0.12",
+  "iOS" : [
+    {
+      "hash" : "a1c30a0f1a5025a8576b4de770667b72fb30879c5cc6dbda0606a01f1e4cd7e5",
+      "name" : "RxBluetoothKit"
+    }
+  ]
+}

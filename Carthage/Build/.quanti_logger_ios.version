@@ -1,0 +1,9 @@
+{
+  "commitish" : "v1.1",
+  "iOS" : [
+    {
+      "hash" : "c7d94ef76cf94382a2a969fdc759f7761a2721b336112ab440cb3ef3af0acaed",
+      "name" : "QuantiLogger"
+    }
+  ]
+}
