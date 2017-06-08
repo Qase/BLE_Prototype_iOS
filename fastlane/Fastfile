@@ -69,10 +69,7 @@ platform :ios do
     slack(
        message: options[:scheme] + " successfully deployed new App Update."
     )
-
   end
-
-
 
   lane :update_profiles do
     ["development", "adhoc"].each do |type|
@@ -84,16 +81,6 @@ platform :ios do
         )
       end
     end
-  end
-
-  # You can define as many lanes as you want
-
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
   end
 
   error do |lane, exception|
