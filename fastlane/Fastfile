@@ -37,10 +37,12 @@ platform :ios do
   end
   
   lane :build do |options|
-    badge(
-      shield: "#{options[:shield_name]}",
-      no_badge: true
+    if options[:deploy]
+      badge(
+        shield: "#{options[:shield_name]}",
+        no_badge: true
       )
+    end
 
     gym(
       export_method: "ad-hoc",
