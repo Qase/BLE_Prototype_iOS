@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fileLogger.levels = [.verbose, .info, .debug, .warn, .error]
         logManager.add(fileLogger)
         
+        let systemLogger = SystemLogger(subsystem: "cz.quanti.BLE-Lock-Master", category: "logging")
+        systemLogger.levels = [.verbose, .info, .debug, .warn, .error]
+        logManager.add(systemLogger)
         
         // Draw controller
         window = UIWindow(frame: UIScreen.main.bounds)
