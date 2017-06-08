@@ -55,9 +55,9 @@ fastlane ios build
 fastlane ios upload_crashlytics
 ```
 
-### ios refresh_certificate
+### ios update_profiles
 ```
-fastlane ios refresh_certificate
+fastlane ios update_profiles
 ```
 
 
