@@ -17,9 +17,9 @@ default_platform :ios
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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" # Webhook URL created in Slack
     
-    carthage
+    #carthage
   end
 
   desc "Runs all the tests"
@@ -27,24 +27,31 @@ platform :ios do
     scan
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "BLE_Lock_Master") # Build your app - more options available
-    pilot
-
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
+  lane :crashlytics_master do
+    gym(
+      export_method: "ad-hoc",
+      scheme: "cz.quanti.BLE-Lock-Master",
+      clean: true,
+      output_directory: "./build",
+    ) 
+    
   end
 
-  desc "Deploy a new version to the App Store"
-  lane :release do
-    # match(type: "appstore")
-    # snapshot
-    gym(scheme: "BLE_Lock_Master") # Build your app - more options available
-    deliver(force: true)
-    # frameit
+  lane :crashlytics_peripheral do
+
+  end
+
+
+
+  lane :refresh_certificate do
+    ["development", "adhoc"].each do |type|
+      ["cz.quanti.BLE-Lock-Master", "cz.quanti.BLE-Lock-Peripheral"].each do |app|
+        match(
+          app_identifier: app,
+          type: type
+        )
+      end
+    end
   end
 
   # You can define as many lanes as you want
@@ -58,10 +65,10 @@ platform :ios do
   end
 
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+    slack(
+      message: exception.message,
+      success: false
+    )
   end
 end
 

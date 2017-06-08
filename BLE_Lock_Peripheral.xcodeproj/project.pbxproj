@@ -17,6 +17,8 @@
 		6341C7E61EA8E93C000BBE86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341C7E51EA8E93C000BBE86 /* ViewController.swift */; };
 		6341C7EB1EA8E93C000BBE86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6341C7EA1EA8E93C000BBE86 /* Assets.xcassets */; };
 		6341C7F71EA8F9B9000BBE86 /* MyPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341C7F61EA8F9B9000BBE86 /* MyPeripheralManager.swift */; };
+		D3DEC5DB1EE9438300B4EDCF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DEC5D91EE9438300B4EDCF /* Fabric.framework */; };
+		D3DEC5DC1EE9438300B4EDCF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DEC5DA1EE9438300B4EDCF /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +47,8 @@
 		6341C7EA1EA8E93C000BBE86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6341C7EF1EA8E93C000BBE86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6341C7F61EA8F9B9000BBE86 /* MyPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPeripheralManager.swift; sourceTree = "<group>"; };
+		D3DEC5D91EE9438300B4EDCF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		D3DEC5DA1EE9438300B4EDCF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +57,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B6192911EB8C4DC007547CF /* SnapKit.framework in Frameworks */,
+				D3DEC5DC1EE9438300B4EDCF /* Crashlytics.framework in Frameworks */,
 				5B61928F1EB8C4DC007547CF /* QuantiLogger.framework in Frameworks */,
 				5B61928B1EB8C4C8007547CF /* BLE_shared.framework in Frameworks */,
+				D3DEC5DB1EE9438300B4EDCF /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +115,8 @@
 		63814B3C1EB3819F001A2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3DEC5D91EE9438300B4EDCF /* Fabric.framework */,
+				D3DEC5DA1EE9438300B4EDCF /* Crashlytics.framework */,
 				5B61928D1EB8C4DC007547CF /* QuantiLogger.framework */,
 				5B61928E1EB8C4DC007547CF /* SnapKit.framework */,
 				5B61928A1EB8C4C8007547CF /* BLE_shared.framework */,
@@ -127,6 +135,7 @@
 				6341C7DD1EA8E93C000BBE86 /* Frameworks */,
 				6341C7DE1EA8E93C000BBE86 /* Resources */,
 				5B6192801EB8C2F5007547CF /* Embed Frameworks */,
+				D3DEC5D31EE9426C00B4EDCF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -187,6 +196,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D3DEC5D31EE9426C00B4EDCF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 95f39747d5544e8f30d7cbd0cc36e6781b3a12e0 19a52fa2c06115d9d30de2244ba443a0914d2969a1591f0008a6afb8136f241d";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6341C7DC1EA8E93C000BBE86 /* Sources */ = {
@@ -305,6 +330,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/BLE_Lock_Peripheral",
 				);
 				INFOPLIST_FILE = BLE_Lock_Peripheral/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -322,6 +348,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/BLE_Lock_Peripheral",
 				);
 				INFOPLIST_FILE = BLE_Lock_Peripheral/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
