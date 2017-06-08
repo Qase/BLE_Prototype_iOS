@@ -20,11 +20,6 @@ platform :ios do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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" # Webhook URL created in Slack
   end
 
-  lane :deploy_apps do |options|
-    deploy_master options[:deploy]
-    deploy_slave options[:deploy]
-  end
-
   lane :deploy_master do |options|
     build(
       scheme: "BLE_Lock_Master",
