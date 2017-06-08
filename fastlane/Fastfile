@@ -84,7 +84,8 @@ platform :ios do
       ["cz.quanti.BLE-Lock-Master", "cz.quanti.BLE-Lock-Peripheral"].each do |app|
         match(
           app_identifier: app,
-          type: type
+          type: type,
+          readonly: true
         )
       end
     end
