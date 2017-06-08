@@ -6,6 +6,7 @@ variables:
 before_script:
   - "~/unlock_ci_keychain.sh"
   - "gem update fastlane"
+  - fastlane update_profiles
 
 stages:
   - build 
