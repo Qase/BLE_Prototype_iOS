@@ -18,33 +18,68 @@ default_platform :ios
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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" # Webhook URL created in Slack
-    
-    #carthage
   end
 
-  desc "Runs all the tests"
-  lane :test do
-    scan
+  lane :deploy_apps do |options|
+    deploy_master options[:deploy]
+    deploy_slave options[:deploy]
   end
-#BLE_Lock_Peripheral
-  lane :crashlytics_master do
+
+  lane :deploy_master do |options|
+    build(
+      scheme: "BLE_Lock_Master",
+      shield_name: "Master",
+      deploy: options[:deploy]
+      )
+  end
+
+  lane :deploy_slave do |options|
+    build(
+      scheme: "BLE_Lock_Peripheral",
+      shield_name: "Peripheral",
+      deploy: options[:deploy]
+    )
+  end
+  
+  lane :build do |options|
+    badge(
+      shield: "#{options[:shield_name]}",
+      no_badge: true
+      )
+
     gym(
       export_method: "ad-hoc",
-      scheme: "BLE_Lock_Master",
+      scheme: options[:scheme],
       clean: true,
       output_directory: "./build",
     )
 
+    if options[:deploy]
+      upload_crashlytics(scheme: options[:scheme])
+    else
+      puts "Skipping deployment"
+    end
+  end
+
+  lane :upload_crashlytics do |options|
+    crashlytics(
+      crashlytics_path: './Crashlytics.framework', # path to your 'Crashlytics.framework'
+      api_token: '95f39747d5544e8f30d7cbd0cc36e6781b3a12e0',
+      build_secret: '19a52fa2c06115d9d30de2244ba443a0914d2969a1591f0008a6afb8136f241d',
+      groups: 'quanti-ios-testers, ios-testers',
+      ipa_path: "./build/" + options[:scheme] + ".ipa",
+      notes: "Application succesfully uploaded to crashlytics \n" + %x[git log --oneline --since `date -v -1d +%d.%m.%Y`]
+    )
+
+    slack(
+       message: options[:scheme] + " successfully deployed new App Update."
+    )
 
   end
 
-  lane :crashlytics_peripheral do
-
-  end
 
 
-
-  lane :refresh_certificate do
+  lane :update_profiles do
     ["development", "adhoc"].each do |type|
       ["cz.quanti.BLE-Lock-Master", "cz.quanti.BLE-Lock-Peripheral"].each do |app|
         match(

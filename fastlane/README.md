@@ -30,19 +30,29 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios test
+### ios deploy_apps
 ```
-fastlane ios test
-```
-Runs all the tests
-### ios crashlytics_master
-```
-fastlane ios crashlytics_master
+fastlane ios deploy_apps
 ```
 
-### ios crashlytics_peripheral
+### ios deploy_master
 ```
-fastlane ios crashlytics_peripheral
+fastlane ios deploy_master
+```
+
+### ios deploy_slave
+```
+fastlane ios deploy_slave
+```
+
+### ios build
+```
+fastlane ios build
+```
+
+### ios upload_crashlytics
+```
+fastlane ios upload_crashlytics
 ```
 
 ### ios refresh_certificate

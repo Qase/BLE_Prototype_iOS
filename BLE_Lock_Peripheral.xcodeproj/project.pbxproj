@@ -158,8 +158,8 @@
 				TargetAttributes = {
 					6341C7DF1EA8E93C000BBE86 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 2PY9RKK8A7;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 97DXWGRCGZ;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -326,7 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2PY9RKK8A7;
+				DEVELOPMENT_TEAM = 97DXWGRCGZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -336,6 +336,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-Lock-Peripheral";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "13e3dad3-40fd-4294-a6df-43a4eeb5000c";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development cz.quanti.BLE-Lock-Peripheral";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -344,7 +346,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2PY9RKK8A7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 97DXWGRCGZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -354,6 +357,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-Lock-Peripheral";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "06e41a52-e219-490a-aaef-f9fdc5b8272e";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc cz.quanti.BLE-Lock-Peripheral";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

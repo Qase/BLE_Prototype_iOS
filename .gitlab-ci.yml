@@ -1,0 +1,42 @@
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+  NIGHT_BUILD: "false"
+
+before_script:
+  - "~/unlock_ci_keychain.sh"
+  - "gem update fastlane"
+
+stages:
+  - build 
+  - crashlytics
+  - night_build
+
+build_job:
+  stage: build
+  script:
+    - if [ "$NIGHT_BUILD" = true ]; then exit 0; fi
+    - fastlane fastlane deploy_master deploy:false
+    - fastlane fastlane deploy_slave deploy:false
+  tags:
+    - mac-mini-2-hipmo
+
+crashlytics_job_night_build:
+  stage: night_build
+  script:
+    - if [ "$NIGHT_BUILD" = false ]; then exit 0; fi
+    - fastlane update_profiles
+    - fastlane fastlane deploy_master deploy:true
+    - fastlane fastlane deploy_slave deploy:true
+  tags:
+    - mac-mini-2-hipmo
+
+crashlytics_job:
+  stage: crashlytics
+  script:
+    - fastlane update_profiles
+    - fastlane fastlane deploy_master deploy:true
+    - fastlane fastlane deploy_slave deploy:true
+  when: manual
+  tags:
+    - mac-mini-2-hipmo
