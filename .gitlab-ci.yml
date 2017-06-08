@@ -12,11 +12,18 @@ stages:
   - crashlytics
   - night_build
 
-build_job:
+build_master_job:
   stage: build
   script:
     - if [ "$NIGHT_BUILD" = true ]; then exit 0; fi
     - fastlane fastlane deploy_master deploy:false
+  tags:
+    - mac-mini-2-hipmo
+
+build_slave_job:
+  stage: build
+  script:
+    - if [ "$NIGHT_BUILD" = true ]; then exit 0; fi
     - fastlane fastlane deploy_slave deploy:false
   tags:
     - mac-mini-2-hipmo
@@ -31,11 +38,20 @@ crashlytics_job_night_build:
   tags:
     - mac-mini-2-hipmo
 
-crashlytics_job:
+crashlytics_master_job:
   stage: crashlytics
   script:
     - fastlane update_profiles
     - fastlane fastlane deploy_master deploy:true
+  when: manual
+  tags:
+    - mac-mini-2-hipmo
+
+
+crashlytics_slave_job:
+  stage: crashlytics
+  script:
+    - fastlane update_profiles
     - fastlane fastlane deploy_slave deploy:true
   when: manual
   tags:
