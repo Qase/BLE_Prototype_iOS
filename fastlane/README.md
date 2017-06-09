@@ -30,11 +30,6 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios deploy_apps
-```
-fastlane ios deploy_apps
-```
-
 ### ios deploy_master
 ```
 fastlane ios deploy_master

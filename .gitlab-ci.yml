@@ -33,7 +33,6 @@ crashlytics_job_night_build:
   stage: night_build
   script:
     - if [ "$NIGHT_BUILD" = false ]; then exit 0; fi
-    - fastlane update_profiles
     - fastlane fastlane deploy_master deploy:true
     - fastlane fastlane deploy_slave deploy:true
   tags:
@@ -42,7 +41,6 @@ crashlytics_job_night_build:
 crashlytics_master_job:
   stage: crashlytics
   script:
-    - fastlane update_profiles
     - fastlane fastlane deploy_master deploy:true
   when: manual
   tags:
@@ -52,7 +50,6 @@ crashlytics_master_job:
 crashlytics_slave_job:
   stage: crashlytics
   script:
-    - fastlane update_profiles
     - fastlane fastlane deploy_slave deploy:true
   when: manual
   tags:
