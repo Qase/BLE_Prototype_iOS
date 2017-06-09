@@ -49,7 +49,7 @@ crashlytics_slave_job:
   environment:
     name: crashlitics
 
-crashlytics_job_night_build:
+crashlytics_night_build_job:
   stage: night_build
   script:
     - fastlane update_profiles
