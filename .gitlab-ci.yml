@@ -1,7 +1,6 @@
 variables:
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
-  NIGHT_BUILD: "false"
 
 before_script:
   - "~/unlock_ci_keychain.sh"
@@ -16,7 +15,6 @@ stages:
 build_master_job:
   stage: build
   script:
-    - if [ "$NIGHT_BUILD" = true ]; then exit 0; fi
     - fastlane fastlane deploy_master deploy:false
   tags:
     - mac-mini-2-hipmo
@@ -24,18 +22,7 @@ build_master_job:
 build_slave_job:
   stage: build
   script:
-    - if [ "$NIGHT_BUILD" = true ]; then exit 0; fi
     - fastlane fastlane deploy_slave deploy:false
-  tags:
-    - mac-mini-2-hipmo
-
-crashlytics_job_night_build:
-  stage: night_build
-  script:
-    - if [ "$NIGHT_BUILD" = false ]; then exit 0; fi
-    - fastlane update_profiles
-    - fastlane fastlane deploy_master deploy:true
-    - fastlane fastlane deploy_slave deploy:true
   tags:
     - mac-mini-2-hipmo
 
@@ -57,3 +44,14 @@ crashlytics_slave_job:
   when: manual
   tags:
     - mac-mini-2-hipmo
+
+crashlytics_job_night_build:
+  stage: night_build
+  script:
+    - fastlane update_profiles
+    - fastlane fastlane deploy_master deploy:true
+    - fastlane fastlane deploy_slave deploy:true
+  tags:
+    - mac-mini-2-hipmo
+  only:
+    - schedules
