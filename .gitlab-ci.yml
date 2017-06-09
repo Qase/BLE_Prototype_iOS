@@ -26,18 +26,6 @@ build_slave_job:
   tags:
     - mac-mini-2-hipmo
 
-<<<<<<< HEAD
-crashlytics_job_night_build:
-  stage: night_build
-  script:
-    - if [ "$NIGHT_BUILD" = false ]; then exit 0; fi
-    - fastlane fastlane deploy_master deploy:true
-    - fastlane fastlane deploy_slave deploy:true
-  tags:
-    - mac-mini-2-hipmo
-
-=======
->>>>>>> f926eda90f4c1f87593090894861df03491b38c0
 crashlytics_master_job:
   stage: crashlytics
   script:
