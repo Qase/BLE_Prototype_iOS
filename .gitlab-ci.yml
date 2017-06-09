@@ -34,6 +34,8 @@ crashlytics_master_job:
   when: manual
   tags:
     - mac-mini-2-hipmo
+  environment:
+    name: crashlitics
 
 
 crashlytics_slave_job:
@@ -44,6 +46,8 @@ crashlytics_slave_job:
   when: manual
   tags:
     - mac-mini-2-hipmo
+  environment:
+    name: crashlitics
 
 crashlytics_job_night_build:
   stage: night_build
@@ -55,3 +59,5 @@ crashlytics_job_night_build:
     - mac-mini-2-hipmo
   only:
     - schedules
+  environment:
+    name: crashlitics
