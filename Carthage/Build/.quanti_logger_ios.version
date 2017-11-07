@@ -1,9 +1,18 @@
 {
-  "commitish" : "v1.1",
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "v1.8",
   "iOS" : [
     {
-      "hash" : "c7d94ef76cf94382a2a969fdc759f7761a2721b336112ab440cb3ef3af0acaed",
-      "name" : "QuantiLogger"
+      "name" : "QuantiLogger",
+      "hash" : "29e3d85ad8b3d6e794242ba51497e5ea9e59e88a8b3c7e5d181766151b323623"
     }
   ]
 }

@@ -9,27 +9,18 @@
 import Foundation
 
 extension Date {
-    
+
     /// Method to return String in format: "yyyy-MM-dd HH:mm:ss" from Date instance.
     ///
     /// - Returns: String
     public func toFullDateTimeString() -> String {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale.current
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return dateFormatter.string(from: self)
+        return DateHelper.toFullDateTimeString(from: self)
     }
-    
-    
+
     /// Method to return String in format: "yyyy-MM-dd" from Date instance.
     ///
     /// - Returns: String
     public func toFullDateString() -> String {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale.current
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.string(from: self)
+        return DateHelper.toFullDateString(from: self)
     }
 }

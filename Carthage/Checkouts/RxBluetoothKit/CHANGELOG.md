@@ -1,3 +1,22 @@
+# 4.0
+- App updated to newest iOS & macOS SDK
+- Swift 4 adoption
+- Possible memory leaks removed
+
+# 3.1.1
+- `listenedOnRestoredState` should not be missing events from delegate now in case of race condition
+- Fixed build issue caused by swiftlint
+
+# 3.1
+- Access from library objects to `CBCentralManager` and `Peripheral` instances is now public
+- Fixed a bug regarding doing unnecessary operations when peripheral was disconnected
+
+# 3.0.14
+- Fixed building on Xcode 9 Beta 2
+
+# 3.0.13
+- Small changes to printing optionals, due to Swift warnings
+
 # 3.0.12
 - Added option to enable logging of CoreBluetooth delegate values
   used internally by RxBluetoothKit
