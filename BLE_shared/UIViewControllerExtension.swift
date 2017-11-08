@@ -18,7 +18,7 @@ extension UIViewController {
         self.view.addGestureRecognizer(tapAction)
     }
     
-    func sendMail(_ sender: UITapGestureRecognizer){
+    @objc func sendMail(_ sender: UITapGestureRecognizer){
         if !MFMailComposeViewController.canSendMail() {
             return
         }
