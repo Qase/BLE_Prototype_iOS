@@ -14,6 +14,8 @@ import QuantiLogger
 class MyPeripheralManager: NSObject {
     var sharedPM: CBPeripheralManager!
     
+    var isBLEStarted = false
+    
     var subscribeChar: CBMutableCharacteristic!
     
     func startManager() {
@@ -46,7 +48,8 @@ extension MyPeripheralManager: CBPeripheralManagerDelegate {
             QLog(" - unsupported", onLevel: .debug)
         }
         
-        if peripheral.state == CBManagerState.poweredOn {
+        if peripheral.state == CBManagerState.poweredOn, !isBLEStarted {
+            isBLEStarted = true
             let service1 = CBMutableService(type: CBUUID(string: ConstantsShared.MainServiceUUIDString), primary: true)
             let char1 = CBMutableCharacteristic(type: CBUUID(string: ConstantsShared.ServiceCharactericticUUIDString), properties: [.notify, .read] , value: nil, permissions: CBAttributePermissions.readable)
             service1.characteristics = [char1]
