@@ -15,129 +15,88 @@ fastlane_version "2.33.0"
 
 default_platform :ios
 
+def get_properties(app, scheme) 
+    if app == "master"
+      provisioning_profile = "cz.quanti.BLE-Lock-Master"
+      xcode_scheme = "BLE_Lock_Master"
+      app_id = "cz.quanti.BLE-Lock-Master"
+    else
+      provisioning_profile = "cz.quanti.BLE-Lock-Peripheral"
+      xcode_scheme = "BLE_Lock_Peripheral"
+      app_id = "cz.quanti.BLE-Lock-Peripheral"
+    end
+
+    if scheme == "adhoc"
+      export_method = "ad-hoc"
+      provisioning = "match Development " + provisioning_profile
+    elsif scheme == "appstore"
+      export_method = "app-store"
+      provisioning = "match AppStore " + provisioning_profile
+    else
+      export_method = "development"
+      provisioning = "match Development " + provisioning_profile
+    end
+
+    return { 
+      "provisioning_profile": provisioning_profile, 
+      "xcode_scheme": xcode_scheme,
+      "export_method": export_method,
+      "provisioning": provisioning
+    }
+end
+
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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" # Webhook URL created in Slack
   end
 
-  lane :deploy_master do |options|
-    build(
-      scheme: "BLE_Lock_Master",
-      shield_name: "Master",
-      deploy: options[:deploy]
-      )
-  end
-
-  lane :deploy_slave do |options|
-    build(
-      scheme: "BLE_Lock_Peripheral",
-      shield_name: "Peripheral",
-      deploy: options[:deploy]
-    )
-  end
-  
-  lane :build do |options|
-    if options[:deploy]
-      badge(
-        shield: "#{options[:shield_name]}",
-        no_badge: true
-      )
-    end
-
-    gym(
-      export_method: "ad-hoc",
-      scheme: options[:scheme],
-      clean: true,
-      output_directory: "./build",
-    )
-
-    if options[:deploy]
-      upload_crashlytics(scheme: options[:scheme])
-    else
-      puts "Skipping deployment"
-    end
-  end
-
   desc "Build aplication"
   lane :build_application do |options|
+    
+    properties = get_properties(options[:app], options[:scheme])
 
-
-    if options[:app] == "master"
-      provisioningProfile = "cz.quanti.BLE-Lock-Master"
-      xcode_scheme = "BLE_Lock_Master"
-    else
-      provisioningProfile = "cz.quanti.BLE-Lock-Peripheral"
-      xcode_scheme = "BLE_Lock_Peripheral"
-    end
-
-    if options[:scheme] == "adhoc"
-      export_method = "ad-hoc"
-      provisioning = "match Development " + provisioningProfile
-    elsif options[:scheme] == "appstore"
-      export_method = "app-store"
-      provisioning = "match AppStore " + provisioningProfile
-    else
-      export_method = "development"
-      provisioning = "match Development " + provisioningProfile
-    end
-
-    provisioningProfileArray = {}
-    provisioningProfileArray[provisioningProfile] = provisioning
+    provisioning_profile_dict = {}
+    provisioning_profile_dict[properties[:provisioning_profile]] = properties[:provisioning]
 
     gym(
-      export_method: export_method,
-      scheme: xcode_scheme,
+      export_method: properties[:export_method],
+      scheme: properties[:xcode_scheme],
       clean: true,
       output_directory: "./build",
       # use_legacy_build_api: true,
       verbose: true,
-      export_options: {
-        provisioningProfiles: provisioningProfileArray
-        #provisioningProfiles: {"cz.quanti.BLE-Lock-Peripheral": "match AppStore cz.quanti.BLE-Lock-Peripheral"}
-      }
+      export_options: { provisioningProfiles: provisioning_profile_dict }
     ) 
+
   end
 
   lane :upload_crashlytics do |options|
 
-    if options[:app] == "master"
-      appID = "cz.quanti.BLE-Lock-Master"
-      app = "BLE_Lock_Master"
-    else
-      appID = "cz.quanti.BLE-Lock-Peripheral"
-      app = "BLE_Lock_Peripheral"
-    end
+    properties = get_properties(options[:app], options[:scheme])
 
     crashlytics(
       crashlytics_path: './Crashlytics.framework', # path to your 'Crashlytics.framework'
       api_token: '95f39747d5544e8f30d7cbd0cc36e6781b3a12e0',
       build_secret: '19a52fa2c06115d9d30de2244ba443a0914d2969a1591f0008a6afb8136f241d',
       groups: 'quanti-ios-testers, ios-testers',
-      ipa_path: "./build/" + app + ".ipa",
+      ipa_path: "./build/" + properties[:xcode_scheme] + ".ipa",
       notes: "Application succesfully uploaded to crashlytics \n" + %x[git log --oneline --since `date -v -1d +%d.%m.%Y`]
     )
 
     slack(
-       message: app + " successfully deployed new App Update."
+       message: properties[:xcode_scheme] + " successfully deployed new App Update."
     )
   end
 
   desc "Deploy application to pilot"
   lane :deploy_pilot do |options|
 
-
-    if options[:app] == "master"
-      appID = "cz.quanti.BLE-Lock-Master"
-      app = "BLE_Lock_Master"
-    else
-      appID = "cz.quanti.BLE-Lock-Peripheral"
-      app = "BLE_Lock_Peripheral"
-    end
+    properties = get_properties(options[:app], options[:scheme])
 
     pilot(
       distribute_external: true,
-      app_identifier: appID,
-      ipa: "./build/" + app + ".ipa",
+      app_identifier: properties[:app_id],
+      ipa: "./build/" + properties[:xcode_scheme] + ".ipa",
       team_id: "2005235",
       verbose: true,
       changelog: "Testovaci build pro externi testery",
@@ -151,6 +110,7 @@ platform :ios do
   end
 
   lane :update_profiles do
+
     ["development", "adhoc", "appstore"].each do |type|
       ["cz.quanti.BLE-Lock-Master", "cz.quanti.BLE-Lock-Peripheral"].each do |app|
         match(
