@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5561BDBB1FB334B30087CB58 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5561BDBA1FB334B30087CB58 /* Launch Screen.storyboard */; };
 		5B0DE54F1EB8873B00163E3B /* DevicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DE54E1EB8873B00163E3B /* DevicesTableViewCell.swift */; };
 		5B0DE5521EB887E100163E3B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DE5511EB887E100163E3B /* Constants.swift */; };
 		5B2BDDA91EB37AFD00DBB75D /* BluetoothMasterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BDDA81EB37AFD00DBB75D /* BluetoothMasterManager.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5561BDBA1FB334B30087CB58 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "BLE_Lock_Master/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5B0DE54E1EB8873B00163E3B /* DevicesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewCell.swift; sourceTree = "<group>"; };
 		5B0DE5511EB887E100163E3B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5B2BDDA81EB37AFD00DBB75D /* BluetoothMasterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMasterManager.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		63814AFD1EB21596001A2B65 = {
 			isa = PBXGroup;
 			children = (
+				5561BDBA1FB334B30087CB58 /* Launch Screen.storyboard */,
 				63814B081EB21596001A2B65 /* BLE_Lock_Master */,
 				5B6192AA1EB8C688007547CF /* BLE_Lock_MasterTests */,
 				63814B071EB21596001A2B65 /* Products */,
@@ -239,6 +242,7 @@
 				63814B041EB21596001A2B65 /* Resources */,
 				5B6192731EB8C236007547CF /* Embed Frameworks */,
 				D3DEC5D41EE9429D00B4EDCF /* ShellScript */,
+				5561BDB61FB333760087CB58 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -257,7 +261,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = "David Nemec";
+				ORGANIZATIONNAME = Quanti;
 				TargetAttributes = {
 					5B6192A81EB8C688007547CF = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -305,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5561BDBB1FB334B30087CB58 /* Launch Screen.storyboard in Resources */,
 				63814B111EB21596001A2B65 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +317,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5561BDB61FB333760087CB58 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" != \"Debug\" ]; then\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n\nfi\n";
+		};
 		D3DEC5D41EE9429D00B4EDCF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -549,8 +567,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.quanti.BLE-Lock-Master";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cd59e51d-611a-4202-bf72-6ec034435dfa";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc cz.quanti.BLE-Lock-Master";
+				PROVISIONING_PROFILE = "2fb1cc06-2ace-4637-9b98-4a8f76f88ba4";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore cz.quanti.BLE-Lock-Master";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};

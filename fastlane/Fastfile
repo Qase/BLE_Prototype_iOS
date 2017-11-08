@@ -58,6 +58,46 @@ platform :ios do
     end
   end
 
+  desc "Build aplication"
+  lane :build_application do |options|
+
+
+    if options[:app] == "master"
+      provisioningProfile = "cz.quanti.BLE-Lock-Master"
+      xcode_scheme = "BLE_Lock_Master"
+    else
+      provisioningProfile = "cz.quanti.BLE-Lock-Peripheral"
+      xcode_scheme = "BLE_Lock_Peripheral"
+    end
+
+    if options[:scheme] == "adhoc"
+      export_method = "ad-hoc"
+      provisioning = "match Development " + provisioningProfile
+    elsif options[:scheme] == "appstore"
+      export_method = "app-store"
+      provisioning = "match AppStore " + provisioningProfile
+    else
+      export_method = "development"
+      provisioning = "match Development " + provisioningProfile
+    end
+
+    provisioningProfileArray = {}
+    provisioningProfileArray[provisioningProfile] = provisioning
+
+    gym(
+      export_method: export_method,
+      scheme: xcode_scheme,
+      clean: true,
+      output_directory: "./build",
+      # use_legacy_build_api: true,
+      verbose: true,
+      export_options: {
+        provisioningProfiles: provisioningProfileArray
+        #provisioningProfiles: {"cz.quanti.BLE-Lock-Peripheral": "match AppStore cz.quanti.BLE-Lock-Peripheral"}
+      }
+    ) 
+  end
+
   lane :upload_crashlytics do |options|
     crashlytics(
       crashlytics_path: './Crashlytics.framework', # path to your 'Crashlytics.framework'
@@ -73,13 +113,41 @@ platform :ios do
     )
   end
 
+  desc "Deploy application to pilot"
+  lane :deploy_pilot do |options|
+
+
+    if options[:app] == "master"
+      appID = "cz.quanti.BLE-Lock-Master"
+      app = "BLE_Lock_Master"
+    else
+      appID = "cz.quanti.BLE-Lock-Peripheral"
+      app = "BLE_Lock_Peripheral"
+    end
+
+    pilot(
+      distribute_external: true,
+      app_identifier: appID,
+      ipa: "./build/" + app + ".ipa",
+      team_id: "2005235",
+      verbose: true,
+      changelog: "Testovaci build pro externi testery",
+      first_name: "Jakub",
+      last_name: "Prusa",
+      email: "ios+contacts@quanti.cz"
+      )
+
+    post_to_slack place:"Apple Testflight"
+    
+  end
+
   lane :update_profiles do
-    ["development", "adhoc"].each do |type|
+    ["development", "adhoc", "appstore"].each do |type|
       ["cz.quanti.BLE-Lock-Master", "cz.quanti.BLE-Lock-Peripheral"].each do |app|
         match(
           app_identifier: app,
           type: type,
-          readonly: true
+          readonly: false
         )
       end
     end
