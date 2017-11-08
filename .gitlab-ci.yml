@@ -8,19 +8,20 @@ before_script:
   - fastlane update_profiles
 
 stages:
-  - build 
+  - build_master
+  - build_peripheral 
   - crashlytics
   - night_build
 
 build_master_job:
-  stage: build
+  stage: build_master
   script:
     - fastlane build_application app:master scheme:appstore
   tags:
     - xcode-9
 
 build_slave_job:
-  stage: build
+  stage: build_peripheral
   script:
     - fastlane build_application app:peripheral scheme:appstore
   tags:
