@@ -15,24 +15,26 @@ stages:
 build_master_job:
   stage: build
   script:
-    - fastlane fastlane deploy_master deploy:false
+    - fastlane build_application app:master scheme:appstore
   tags:
-    - mac-mini-2-hipmo
+    - xcode-9
 
 build_slave_job:
   stage: build
   script:
-    - fastlane fastlane deploy_slave deploy:false
+    - fastlane build_application app:peripheral scheme:appstore
   tags:
-    - mac-mini-2-hipmo
+    - xcode-9
 
 crashlytics_master_job:
   stage: crashlytics
   script:
-    - fastlane fastlane deploy_master deploy:true
+    - fastlane update_profiles
+    - fastlane build_application app:master scheme:adhoc
+    - fastlane upload_crashlytics app:master
   when: manual
   tags:
-    - mac-mini-2-hipmo
+    - xcode-9
   environment:
     name: crashlitics
 
@@ -40,10 +42,12 @@ crashlytics_master_job:
 crashlytics_slave_job:
   stage: crashlytics
   script:
-    - fastlane fastlane deploy_slave deploy:true
+    - fastlane update_profiles
+    - fastlane build_application app:peripheral scheme:adhoc
+    - fastlane upload_crashlytics app:peripheral
   when: manual
   tags:
-    - mac-mini-2-hipmo
+    - xcode-9
   environment:
     name: crashlitics
 
@@ -51,10 +55,14 @@ crashlytics_night_build_job:
   stage: night_build
   script:
     - fastlane update_profiles
-    - fastlane fastlane deploy_master deploy:true
-    - fastlane fastlane deploy_slave deploy:true
+
+    - fastlane build_application app:peripheral scheme:adhoc
+    - fastlane upload_crashlytics app:peripheral
+
+    - fastlane build_application app:master scheme:adhoc
+    - fastlane upload_crashlytics app:master
   tags:
-    - mac-mini-2-hipmo
+    - xcode-9
   environment:
     name: crashlitics
   only:

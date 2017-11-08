@@ -99,17 +99,26 @@ platform :ios do
   end
 
   lane :upload_crashlytics do |options|
+
+    if options[:app] == "master"
+      appID = "cz.quanti.BLE-Lock-Master"
+      app = "BLE_Lock_Master"
+    else
+      appID = "cz.quanti.BLE-Lock-Peripheral"
+      app = "BLE_Lock_Peripheral"
+    end
+
     crashlytics(
       crashlytics_path: './Crashlytics.framework', # path to your 'Crashlytics.framework'
       api_token: '95f39747d5544e8f30d7cbd0cc36e6781b3a12e0',
       build_secret: '19a52fa2c06115d9d30de2244ba443a0914d2969a1591f0008a6afb8136f241d',
       groups: 'quanti-ios-testers, ios-testers',
-      ipa_path: "./build/" + options[:scheme] + ".ipa",
+      ipa_path: "./build/" + app + ".ipa",
       notes: "Application succesfully uploaded to crashlytics \n" + %x[git log --oneline --since `date -v -1d +%d.%m.%Y`]
     )
 
     slack(
-       message: options[:scheme] + " successfully deployed new App Update."
+       message: app + " successfully deployed new App Update."
     )
   end
 
