@@ -25,6 +25,7 @@ Workspace contains two demo projects created for testing CoreBluetooth on iOS pl
  * Peripheral App does not survive in background when user launches multiple apps and system decides that Peripheral App should be deallocated from memory. Expected behavior is that device keeps advertising and is relaunched when new BLE connection occurs
 
 
+Note: You can recognize that app was deallocated from memory, by having peripheral app connected to debugger. When deallocation occurs you'll see following message in Console Output "Message from debugger: Terminated due to memory issue"
 
 
 
